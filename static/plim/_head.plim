@@ -1,0 +1,16 @@
+div.headtop 
+    div._007 
+        span._008
+            span.icon-gonggaonotice.iconfont 
+            用
+            a._010 href="#" Retain屏 的 Mac 
+            浏览本站体验最佳
+        span._011
+            a._012 href="#" 
+            张沈鹏
+            span.triangle 
+    a.iconfont.icon-menu.iconnow href="#"
+    a.iconfont.icon-earth href="#"
+    a.iconfont.icon-talk12 href="#"
+        span._013 3
+    a.iconfont.icon-search href="#"

@@ -1,0 +1,59 @@
+section#about.left-column._000
+    div.cover
+        a.iconfont.icon-clock href="#" 
+        div#navigation 
+            div.inner 
+                nav role="navigation" 
+                    ul#menu-main.menu
+                        li#menu-item-64.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-64
+                            a href="http://kolumn-demo.rockermarket.com/about-me/" About me 
+                        li#menu-item-65.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-65
+                            a href="http://kolumn-demo.rockermarket.com/contact/" Contact 
+                        li#menu-item-66.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-66
+                            a href="http://kolumn-demo.rockermarket.com/sample-page/" Sample Page   
+                form#search action="http://kolumn-demo.rockermarket.com/" method="get" role="search"
+                    input#s placeholder="Search" name="s" type="search"
+        div#details 
+            div.profile 
+                a rel="home" href="http://kolumn-demo.rockermarket.com/"
+                    img.avatar src="../css/_img/mzl.hbfqzrrm.png" height="90" width="90" 
+                h1 
+                    a._001 rel="home" href="http://kolumn-demo.rockermarket.com/" TECH2IPO  
+                p._001 创新改变世界 , 我们见证未来  
+            nav.social 
+                ul._002 
+                    li
+                        a.ico-facebook href="http://facebook.com/ludwiczakpawel" target="_top" title="微信" &#xe609;
+                    li
+                        a.ico-twitter href="http://twitter.com/ludwiczakpawel" target="_top" title="Twitter" &#xe607;
+                    li
+                        a.ico-dribbble href="http://dribbble.com/ludwiczakpawel" target="_top" title="新浪微博" &#xe606;
+                    li
+                        a.ico-linkedin href="http://pl.linkedin.com/in/ludwiczakpawel" target="_top" title="雪球" &#xe601;
+                    li
+                        a.ico-email href="mailto:support@rockermarket.com" target="_top" title="Email"  &#xe608;
+            nav.social.channel 
+                div
+                    a href="#" 新闻资讯
+                        span._003 +
+                div
+                    a href="#" 极客社区
+                        span._004 +
+                div
+                    a href="#" 小道消息
+                div
+                    a href="#"
+                        span._005 苹果发布会
+                            span._006 23
+                div
+                    a href="#"
+                        span._005 微软XBOX
+                            span._006 9
+                div
+                    a href="#" 小站  
+            nav.footer role="navigation" 
+                ul#menu-footer.menu
+                    li#menu-item-67.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-67
+                        a href="http://kolumn-demo.rockermarket.com/about-me/" 关于我们 
+                    li#menu-item-68.menu-item.menu-item-type-post_type.menu-item-object-page.menu-item-68
+                        a href="http://kolumn-demo.rockermarket.com/contact/" 官方博客

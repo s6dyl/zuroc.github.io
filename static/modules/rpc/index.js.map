@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "index.js",
+  "sourceRoot": "../../../../798/pure",
+  "sources": [
+    "../../xpure/pure/coffee/rpc/index.coffee"
+  ],
+  "names": [],
+  "mappings": ";AACA,CACI,UADJ,EAEI,eAFJ,EAGI,CACI,CAAC,OAAD,EAAU,SAAV,CADJ,EAEI,CAAC,SAAD,EAAY,SAAZ,CAFJ,EAGI,CAAC,UAAD,EAAa,SAAb,CAHJ,CAHJ,CAAA,CAAA"
+}

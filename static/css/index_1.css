@@ -1,0 +1,10 @@
+/* ::::: file:///Users/zuroc/%E7%99%BE%E5%BA%A6%E4%BA%91%E5%90%8C%E6%AD%A5%E7%9B%98/scrapbook/data/20150406173544/index_1.css ::::: */
+/* line 3, ../scss/index_1.scss */
+#player, .fallback, body, html, iframe {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  background-color: black;
+  overflow: hidden;
+}

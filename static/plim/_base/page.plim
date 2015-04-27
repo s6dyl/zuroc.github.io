@@ -1,0 +1,29 @@
+doctype html
+head
+    meta charset="utf-8"
+    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+
+    script src="https://leancloud.cn/scripts/lib/av-0.5.1.min.js"
+    <!-- @require /lib/mod.js -->
+    <!-- @require /lib/config.js -->
+    <!-- @require /lib/jquery.js -->
+    <!-- @require /lib/avalon.modern.shim.js --> 
+    <!-- @require /lib/director.js -->
+    <!-- @require /lib/jquery.cookie.js -->
+    <!-- @require /lib/semantic/semantic.js -->
+    <!-- @require /lib/semantic/semantic.css -->
+    <!-- @require "/lib/nprogress/nprogress.js" -->
+    <!-- @require "/css/init.css" -->
+
+    -block head
+body
+    = next.body()
+
+    script 
+        require ('lib/jquery_ext')
+        require ('lib/async')
+        require ('lib/avalon_ext')
+        require ('lib/modal')
+    -block script
+

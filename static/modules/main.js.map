@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "main.js",
+  "sourceRoot": "../../../798/pure",
+  "sources": [
+    "../../xpure/pure/coffee/main.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAoEkB"
+}

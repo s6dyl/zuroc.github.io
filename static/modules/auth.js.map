@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "auth.js",
+  "sourceRoot": "../../../798/pure",
+  "sources": [
+    "../../xpure/pure/coffee/auth.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAuDC"
+}

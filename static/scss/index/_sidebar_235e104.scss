@@ -1,0 +1,85 @@
+@font-face {
+    font-family: 'icon';
+    src: url('//at.alicdn.com/t/font_1428319489_4957662.eot'); /* IE9*/
+    src: url('//at.alicdn.com/t/font_1428319489_4957662.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('//at.alicdn.com/t/font_1428319489_4957662.woff') format('woff'), /* chrome、firefox */
+    url('//at.alicdn.com/t/font_1428319489_4957662.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+    url('//at.alicdn.com/t/font_1428319489_4957662.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+#about { background-position: center center; background-repeat: no-repeat; transition: left 0.15s ease-in-out 0s; background-size: cover; }
+body.home #about #details .profile h1 a:before, body.home #about #details .profile h2 a:before { display: none; }
+#details { height: 100vh; box-sizing: border-box; text-align: center; text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3); color: rgb(255, 255, 255); transition: all 0.15s ease-in-out 0s; vertical-align: middle; width: 100%; padding-top: 35px; }
+#details > * { display: inline-block; width: 100%; }
+#details .profile { box-sizing: border-box; padding: 0px 30px; }
+#details .profile .avatar { width: 90px; height: 90px; border-radius: 50px; background-clip: padding-box; margin-bottom: 20px; transition: all 0.15s ease-in-out 0s; border: 5px solid rgba(255, 255, 255, 0.1); }
+#details .profile .avatar:hover { transform: scale(1.2); }
+#details .profile h1, #details .profile h2 { margin-bottom: 5px; color: inherit; line-height: 34px; font-size: 22px; }
+#details .profile h1 a, #details .profile h2 a { color: inherit; position: relative; }
+#details .profile h1 a:before, #details .profile h2 a:before { content: "←"; position: absolute; left: 0px; font-size: 18px; font-weight: normal; font-family: "Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif; opacity: 0; transition: all 0.15s ease-in-out 0s; }
+#details .profile h1 a:hover:before, #details .profile h2 a:hover:before { left: -30px; opacity: 1; }
+#details .profile p { color: rgba(255, 255, 255, 0.8); line-height: 20px; letter-spacing: -0.035em; font-size: 16px; }
+#details .profile h1 a:hover{color: rgba(255, 255, 255, 1); transition: color 0.15s ease-in-out 0s;}
+#navigation { display: none; width: 100%; height: 100vh; padding: 100px 30px 15px; box-sizing: border-box; text-align: center; text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3); color: rgb(255, 255, 255); overflow-y: auto; max-height: 100vh; }
+#navigation .inner { display: table-cell; vertical-align: middle; width: 100vw; height: calc(100vh - 115px); }
+#navigation nav { width: 100%; display: inline-block; }
+#navigation nav ul li a { color: rgba(255, 255, 255, 0.8); display: block; font-size: 16px; transition: all 0.15s ease-in-out 0s; border-radius: 4px; background-clip: padding-box; line-height: 20px; padding: 20px 0px; }
+#navigation nav ul li a:hover { color: rgb(255, 255, 255); background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.3); }
+#navigation #search { display: inline-block; width: 100%; }
+#navigation #search input { line-height: 20px; padding: 20px 0px; text-align: center; height: 60px; background: none repeat scroll 0% 0% transparent; border: 0px none; color: rgba(255, 255, 255, 0.8); box-shadow: 0px 0px 0px transparent; font-size: 16px; }
+#navigation #search input:-moz-placeholder, #navigation #search input::-moz-placeholder { color: rgba(255, 255, 255, 0.8); }
+#navigation #search input:hover { background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.3); color: rgb(255, 255, 255); }
+#navigation #search input:hover:-moz-placeholder, #navigation #search input:hover::-moz-placeholder { color: rgb(255, 255, 255); }
+#navigation #search input:focus { background: none repeat scroll 0% 0% rgb(255, 255, 255); color: rgb(111, 111, 111); }
+#navigation #search input:focus:-moz-placeholder, #navigation #search input:focus::-moz-placeholder { color: rgb(184, 184, 184); }
+nav.social { padding: 10px 30px 0px; margin-top: 10px; position: relative; box-sizing: border-box; }
+nav.social:before { width: 50px; height: 0px; content: ""; display: block; top: 8px; position: absolute; left: 50%; margin-left: -25px; box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05); border-top: 2px solid rgba(255, 255, 255, 0.3); }
+nav.social ul li { display: inline-block; margin: 0px 3px; }
+nav.social ul li a { height: 32px; display: inline-block;font-family:"icon"; text-align: left; opacity: 0.75; transition: all 0.15s ease-in-out 0s;color:#fff;font-size:34px; }
+nav.social ul li a:hover { opacity: 1; transform: scale(1.2); }
+nav.footer { position: absolute; bottom: 40px; left: 0px; width: 100%; font-size: 12px; letter-spacing: 0px; }
+nav.footer ul li { display: inline-block; }
+nav.footer ul li:after { content: "∙"; margin: 0px 8px; color: rgba(255, 255, 255, 0.25); }
+nav.footer ul li:last-child:after { display: none; }
+nav.footer ul li a { color: rgba(255, 255, 255, 0.5); transition: color 0.15s ease-in-out 0s; }
+nav.footer ul li a:hover { color: rgb(255, 255, 255); }
+.cover .icon-clock {float: right; margin-right: 30px; margin-top: 16px;}
+.cover .icon-clock:before { content: ""; font-size: 26px; color: rgba(255, 255, 255, 0.5); }
+.cover .icon-clock:hover:before { color: rgb(255, 255, 255); }
+._000 {
+   background-color:rgb(68, 68, 68);
+   background-image:url('_img/2e2c868c087fb53582e88d12ed9575d2');
+   background-size:cover;
+}
+._001 {
+    font-weight:normal;
+}
+._002 {
+    padding-top:6px;
+}                                                                                                                         
+._003 {                                                                                                                   
+   margin-left:7px;                                                                                                      
+   position:absolute;                                                                                                    
+   top:-4px;                                                                                                              
+}                                                                                                                         
+._004 {                                                                                                                   
+    margin-left:7px;                                                                                                      
+    position:absolute;                                                                                                    
+    top:-4px;                                                                                                             
+}                                                                                                                         
+._005 {                                                                                                                   
+    position:relative;                                                                                                    
+}                                                                                                                         
+._006 {                                                                                                                   
+    background:none repeat scroll 0px 0px rgba(55, 150, 0, 0.4);                                                          
+    border-radius:10px;                                                                                                   
+    color:rgb(204, 201, 191);                                                                                             
+    font-family:Open Sans;                                                                                                
+    font-size:12px;                                                                                                       
+    font-weight:normal;                                                                                                   
+    margin-left:6px;                                                                                                      
+    padding:2px 7px;                                                                                                      
+    position:absolute;                                                                                                    
+    top:-3px;                                                                                                             
+    transform:scale(0.9);                                                                                                 
+}

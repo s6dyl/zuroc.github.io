@@ -1,0 +1,1 @@
+define("modal/auth",function(){$.modal_alert("test")});
