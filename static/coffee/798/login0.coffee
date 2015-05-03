@@ -1,5 +1,5 @@
 require.css "798/login0", ->
-    $('body').html("<div id=\"particles-js\"></div><div id=\"_798\"><div class=\"head vc2\"><div class=\"vc1\"><div class=\"vc0\"><h1>797.SPACE</h1><h2>打造你自己的垂直社区</h2><h3><span>&nbsp;</span></h3><div class=\"bar\"><a data-wow-delay=\"1s\" href=\"javascript:$$('SSO/auth.new');void(0)\" class=\"ui primary button wow bounceInRight\">注册</a><a data-wow-delay=\"1s\" href=\"javascript:$$('SSO/auth.login');void(0)\" class=\"ui basic button wow bounceInLeft\">登录</a></div></div></div></div></div>")
+    $('body').html("<div id=\"particles-js\"></div><div style=\"display:none\" id=\"_798\"><div class=\"head vc2\"><div class=\"vc1\"><div class=\"vc0\"><h1>797.SPACE</h1><h2>打造你自己的垂直社区</h2><h3><span>&nbsp;</span></h3><div class=\"bar\"><a data-wow-delay=\"1s\" href=\"javascript:$$('SSO/auth.new');void(0)\" class=\"ui primary button wow bounceInRight\">注册</a><a data-wow-delay=\"1s\" href=\"javascript:$$('SSO/auth.login');void(0)\" class=\"ui basic button wow bounceInLeft\">登录</a></div></div></div></div></div>")
 
 
     _798 = $("#_798").show()
