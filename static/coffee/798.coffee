@@ -10,7 +10,7 @@
 clientWidth = document.documentElement.clientWidth
 
 if clientWidth < 414
-    scale = clientWidth/414
+    scale = (clientWidth/414).toFixed(3)
 else
     scale = 1
 document.querySelector("meta[name=viewport]").setAttribute(
