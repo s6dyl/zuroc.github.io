@@ -3,7 +3,7 @@
     from config import HOST 
 
 #particles-js
-#_798 style="display:none"
+#_798
     .head.vc2
         .vc1
             .vc0 
