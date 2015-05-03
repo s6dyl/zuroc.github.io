@@ -14,6 +14,7 @@ if clientWidth < 414
     scale = (clientWidth/414).toFixed(3)
 else
     scale = 1
+alert clientWidth
 document.querySelector("meta[name=viewport]").setAttribute(
     'content',
     "width=device-width, initial-scale=#{scale}, maximum-scale=#{scale}, user-scalable=0"
@@ -21,8 +22,8 @@ document.querySelector("meta[name=viewport]").setAttribute(
 
 current_user = AV.User.current()
 current_user?.fetch()
-require_async "798/login#{!!current_user-0}"
-
+src="798/login#{!!current_user-0}"
+document.write("""<script src="/static/modules/#{src}.js"></script><script>require("#{src}")</script>""")
 
 
 
