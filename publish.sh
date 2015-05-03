@@ -1,3 +1,6 @@
+
+PREFIX=$(cd "$(dirname "$0")"; pwd)
+cd $PREFIX
 cp ~/798/build/* . -R
 cp html/798.html index.html
 hg addremove
