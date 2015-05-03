@@ -104,9 +104,10 @@
 /* line 75, ../scss/_base/_semantic.scss */
 .ui.dimmer.form .icon.close {
   opacity: 1;
+  outline: 0;
 }
 
-/* line 81, ../scss/_base/_semantic.scss */
+/* line 82, ../scss/_base/_semantic.scss */
 .modal.basic .vc2 {
   width: 100%;
   text-align: center;
@@ -120,7 +121,7 @@
   height: 100%;
   right: 0;
 }
-/* line 93, ../scss/_base/_semantic.scss */
+/* line 94, ../scss/_base/_semantic.scss */
 .modal.basic .form input, .modal.basic .form input:focus {
   background: transparent;
   border: 2px solid #9C847F;
@@ -133,46 +134,46 @@
   padding-left: 77px;
   border-radius: 0;
 }
-/* line 106, ../scss/_base/_semantic.scss */
+/* line 107, ../scss/_base/_semantic.scss */
 .modal.basic .form .field.error input {
   border-color: #c00;
   border-radius: 0;
   background: rgba(255, 255, 255, 0.9);
   color: #c00;
 }
-/* line 112, ../scss/_base/_semantic.scss */
+/* line 113, ../scss/_base/_semantic.scss */
 .modal.basic .form input:focus {
   background: rgba(0, 0, 0, 0.5);
   border-color: #fff;
   color: #fff;
 }
-/* line 117, ../scss/_base/_semantic.scss */
+/* line 118, ../scss/_base/_semantic.scss */
 .modal.basic input:focus + label {
   color: #fff;
   border-right-color: #fff;
 }
-/* line 121, ../scss/_base/_semantic.scss */
+/* line 122, ../scss/_base/_semantic.scss */
 .modal.basic .form .field.error label {
   background: #c00;
   color: #fff;
   border-right-color: #c00;
 }
-/* line 126, ../scss/_base/_semantic.scss */
+/* line 127, ../scss/_base/_semantic.scss */
 .modal.basic .form .field.error input:focus + label {
   border-right-color: #f30;
 }
-/* line 129, ../scss/_base/_semantic.scss */
+/* line 130, ../scss/_base/_semantic.scss */
 .modal.basic .form .field.error input:focus {
   border-color: #f30;
   color: #f30;
   background: #ff0;
 }
-/* line 134, ../scss/_base/_semantic.scss */
+/* line 135, ../scss/_base/_semantic.scss */
 .modal.basic .ui.buttons .button {
   border-radius: 0;
   color: #9C847F;
 }
-/* line 138, ../scss/_base/_semantic.scss */
+/* line 139, ../scss/_base/_semantic.scss */
 .modal.basic .form label {
   color: #9C847F;
   border-right: 2px solid #9C847F;
@@ -189,16 +190,16 @@
   margin-top: 2px;
   margin-left: 2px;
 }
-/* line 155, ../scss/_base/_semantic.scss */
+/* line 156, ../scss/_base/_semantic.scss */
 .modal.basic .header {
   padding-bottom: 0;
 }
-/* line 158, ../scss/_base/_semantic.scss */
+/* line 159, ../scss/_base/_semantic.scss */
 .modal.basic .header p {
   font-size: 16px;
   margin-top: 32px;
 }
-/* line 162, ../scss/_base/_semantic.scss */
+/* line 163, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button:first-child {
   width: 100%;
   color: #fff !important;
@@ -209,56 +210,56 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-/* line 169, ../scss/_base/_semantic.scss */
+/* line 170, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button:first-child:focus, .modal.basic .one.ui.inverted.buttons .button:first-child:active, .modal.basic .one.ui.inverted.buttons .button:first-child:hover {
   color: #fff !important;
   background: rgba(255, 255, 255, 0.2) !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
-/* line 175, ../scss/_base/_semantic.scss */
+/* line 176, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button.ok {
   border: 2px solid rgba(255, 255, 255, 0.8);
 }
-/* line 178, ../scss/_base/_semantic.scss */
+/* line 179, ../scss/_base/_semantic.scss */
 .modal.basic .hideSubmit {
   position: absolute;
   left: -99999px;
 }
-/* line 182, ../scss/_base/_semantic.scss */
+/* line 183, ../scss/_base/_semantic.scss */
 .modal.basic input::selection {
   background: #a7bd06;
   color: #FFF;
 }
 
-/* line 185, ../scss/_base/_semantic.scss */
+/* line 186, ../scss/_base/_semantic.scss */
 .one.ui.inverted.buttons .button:first-child {
   margin: 20px auto 0;
 }
 
-/* line 188, ../scss/_base/_semantic.scss */
+/* line 189, ../scss/_base/_semantic.scss */
 .one.ui.fluid {
   text-align: center;
 }
-/* line 190, ../scss/_base/_semantic.scss */
+/* line 191, ../scss/_base/_semantic.scss */
 .one.ui.fluid .button {
   margin-top: 34px;
   width: 185px;
   float: none;
 }
 
-/* line 196, ../scss/_base/_semantic.scss */
+/* line 197, ../scss/_base/_semantic.scss */
 .ui.basic.modal > h1 {
   padding: 0 1.9rem;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 200, ../scss/_base/_semantic.scss */
+  /* line 201, ../scss/_base/_semantic.scss */
   .ui.basic.modal > h1 {
     padding: 0 1rem;
   }
 }
-/* line 204, ../scss/_base/_semantic.scss */
+/* line 205, ../scss/_base/_semantic.scss */
 h1 p {
   font-size: 1em;
 }
