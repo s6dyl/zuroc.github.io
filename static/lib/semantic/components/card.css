@@ -161,7 +161,7 @@
 .ui.card > .content > .header {
   display: block;
   margin: 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   color: rgba(0, 0, 0, 0.85);
 }
 

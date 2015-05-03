@@ -1,10 +1,4 @@
 
-@font-face {
-    font-family: "Fira Sans";
-    font-style: normal;
-    font-weight: 300;
-    src: local("Fira Sans Light"), url('//dn-ac88.qbox.me/firasans-light.eot') format("embedded-opentype"), url('//dn-ac88.qbox.me/firasans-light.woff') format("woff"), url('//dn-ac88.qbox.me/firasans-light.ttf') format("truetype");
-}
 /* junge-regular - latin */
 @font-face {
 font-family: 'Junge';
@@ -15,4 +9,17 @@ url('/static/lib/font/junge/junge-v4-latin-regular.woff2') format('woff2'), /* S
 url('/static/lib/font/junge/junge-v4-latin-regular.woff') format('woff'), /* Modern Browsers */
 url('/static/lib/font/junge/junge-v4-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
 url('/static/lib/font/junge/junge-v4-latin-regular.svg#Junge') format('svg'); /* Legacy iOS */
+}
+
+
+/* lato-regular - latin */
+@font-face {
+  font-family: 'Lato';
+  src: url('/static/lib/font/lato/lato-v11-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Lato Regular'), local('Lato-Regular'),
+       url('/static/lib/font/lato/lato-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/static/lib/font/lato/lato-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/static/lib/font/lato/lato-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('/static/lib/font/lato/lato-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/static/lib/font/lato/lato-v11-latin-regular.svg#Lato') format('svg'); /* Legacy iOS */
 }

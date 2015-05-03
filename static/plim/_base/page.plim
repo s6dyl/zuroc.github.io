@@ -8,6 +8,7 @@ head
     <!-- @require /lib/mod.js -->
     <!-- @require /lib/config.js -->
     <!-- @require /lib/jquery.js -->
+    <!-- @require /lib/json2.js -->
     <!-- @require /lib/avalon.modern.shim.js --> 
     <!-- @require /lib/director.js -->
     <!-- @require /lib/jquery.cookie.js -->

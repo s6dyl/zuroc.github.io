@@ -106,6 +106,11 @@ $blue:#4184f3;
         border-radius:0;
 
     }
+    .form .field.error .message{
+        color:rgba(255,150,50,.95);
+        padding:7px 0 0 77px;
+        text-align:left;
+    }
     .form .field.error input{
         border-color:#c00;
         border-radius:0;
@@ -132,7 +137,7 @@ $blue:#4184f3;
     .form .field.error input:focus{
         border-color: #f30;
         color:#f30;
-        background:#ff0;
+        background:#ffa;
     }
     .ui.buttons .button{
         border-radius:0;
@@ -143,7 +148,7 @@ color: #9C847F;
 border-right: 2px solid #9C847F;
 display: inline-block;
 font-size: 16px;
-line-height: 46px;
+line-height: 43px;
 margin-right: -64px;
 text-align: center;
 vertical-align: top;

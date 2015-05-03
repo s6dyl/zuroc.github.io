@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "login1.js",
+  "sourceRoot": "../..",
+  "sources": [
+    "coffee/798/login1.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA,CAAA,CAAE,MAAF,CAAS,CAAC,IAAV,CAAe,QAAA,CAAS,8BAAT,CAAf,CAAA,CAAA"
+}

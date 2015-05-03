@@ -1,8 +1,5 @@
 -inherit /_base/page.plim
----!
-    from config import HOST 
 
-<!-- @require /lib/particles.js -->
 
 -block script
     script
@@ -10,17 +7,4 @@
 
 script        
     NProgress.inc()
-
-#particles-js
-#_798
-    .head.vc2
-        .vc1
-            .vc0 
-                h1 =HOST 
-                h2 打造你自己的垂直社区
-                h3
-                    span &nbsp; 
-                .bar
-                    a.ui.primary.button.wow.bounceInRight data-wow-delay="1s" href="javascript:$$('SSO/auth.new');void(0)" 注册
-                    a.ui.basic.button.wow.bounceInLeft data-wow-delay="1s"  href="javascript:$$('SSO/auth.login');void(0)" 登录
 

@@ -33,7 +33,7 @@
 /* Default Styling */
 .ui.accordion .title:not(.ui) {
   padding: 0.5em 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1em;
   color: rgba(0, 0, 0, 0.8);
 }

@@ -4,7 +4,7 @@
     input spellcheck="false" autocomplete="off" ms-duplex="o.username" name="username"
     label 昵称
 .field
-    input spellcheck="false" autocomplete="off" ms-duplex="o.phone" name="phone"
+    input spellcheck="false" autocomplete="off" ms-duplex="o.mobilePhoneNumber" name="mobilePhoneNumber"
     label 手机
 .field
     input spellcheck="false" autocomplete="off" ms-duplex="o.email" name="email"

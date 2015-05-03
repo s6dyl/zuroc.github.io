@@ -17,6 +17,14 @@
             "uri": "/static/coffee/798.coffee",
             "type": "coffee"
         },
+        "coffee/798/login0.coffee": {
+            "uri": "/static/coffee/798/login0.coffee",
+            "type": "coffee"
+        },
+        "coffee/798/login1.coffee": {
+            "uri": "/static/coffee/798/login1.coffee",
+            "type": "coffee"
+        },
         "coffee/SSO/auth.coffee": {
             "uri": "/static/coffee/SSO/auth.coffee",
             "type": "coffee"
@@ -61,6 +69,10 @@
             "uri": "/static/css/798.css",
             "type": "css",
             "id": "css/798.css"
+        },
+        "css/798/login0.css": {
+            "uri": "/static/css/798/login0.css",
+            "type": "css"
         },
         "css/_base/spinkit.css": {
             "uri": "/static/css/_base/spinkit.css",
@@ -184,6 +196,11 @@
             "type": "js",
             "id": "lib/jquery.typed.js"
         },
+        "lib/json2.js": {
+            "uri": "/static/lib/json2.js",
+            "type": "js",
+            "id": "lib/json2.js"
+        },
         "lib/mod.js": {
             "uri": "/static/lib/mod.js",
             "type": "js",
@@ -204,8 +221,7 @@
         },
         "lib/particles.js": {
             "uri": "/static/lib/particles.js",
-            "type": "js",
-            "id": "lib/particles.js"
+            "type": "js"
         },
         "lib/semantic/components/accordion.css": {
             "uri": "/static/lib/semantic/components/accordion.css",
@@ -534,10 +550,22 @@
             ],
             "id": "lib/semantic/semantic.js"
         },
+        "lib/store.js": {
+            "uri": "/static/lib/store.js",
+            "type": "js"
+        },
         "lib/wow.js": {
             "uri": "/static/lib/wow.js",
             "type": "js",
             "id": "lib/wow.js"
+        },
+        "798/login0": {
+            "uri": "/static/modules/798/login0.js",
+            "type": "js"
+        },
+        "798/login1": {
+            "uri": "/static/modules/798/login1.js",
+            "type": "js"
         },
         "SSO/auth": {
             "uri": "/static/modules/SSO/auth.js",
@@ -586,6 +614,10 @@
         },
         "scss/798.scss": {
             "uri": "/static/scss/798.scss",
+            "type": "scss"
+        },
+        "scss/798/login0.scss": {
+            "uri": "/static/scss/798/login0.scss",
             "type": "scss"
         },
         "scss/_base/_animate.scss": {

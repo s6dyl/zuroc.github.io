@@ -532,7 +532,7 @@ body {
   padding: 0px;
   min-width: 320px;
   background: #f7f7f7;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 14px;
   line-height: 1.33;
   color: rgba(0, 0, 0, 0.8);
@@ -548,7 +548,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Junge",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Junge,'Hiragino Sans GB','Microsoft YaHei';
   line-height: 1.33em;
   margin: -webkit-calc(2rem -  0.165em ) 0em 1rem;
   margin: calc(2rem -  0.165em ) 0em 1rem;
@@ -684,7 +684,7 @@ input::selection {
   vertical-align: baseline;
   background-color: #e0e0e0;
   color: rgba(0, 0, 0, 0.6);
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   margin: 0em 0.25em 0em 0em;
   padding: 0.78571em 1.5em 0.78571em;
   text-transform: none;
@@ -5060,7 +5060,7 @@ i.flag.zimbabwe:before {
   margin: -webkit-calc(2rem -  0.165em ) 0em 1rem;
   margin: calc(2rem -  0.165em ) 0em 1rem;
   padding: 0em 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-weight: bold;
   line-height: 1.33em;
   text-transform: none;
@@ -9245,7 +9245,7 @@ img.ui.bordered.image {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   text-align: left;
   line-height: 1.2142em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   padding: 0.67861em 1em;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -10965,7 +10965,7 @@ ol.ui.list ol,
 .ui.list > .item .header {
   display: block;
   margin: 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-weight: bold;
   color: rgba(0, 0, 0, 0.8);
 }
@@ -13268,7 +13268,7 @@ ol.ui.horizontal.list li:before,
 /* Title */
 
 .ui.steps .step .title {
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1.0714em;
   font-weight: bold;
 }
@@ -13890,7 +13890,7 @@ ol.ui.horizontal.list li:before,
 .ui.form input[type="time"],
 .ui.form input[type="text"],
 .ui.form input[type="url"] {
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   margin: 0em;
   outline: none;
   -webkit-appearance: none;
@@ -18740,7 +18740,7 @@ ol.ui.horizontal.list li:before,
 
 .ui.message .header {
   display: block;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-weight: bold;
   margin: 0em 0em 0.5rem 0em;
 }
@@ -20805,7 +20805,7 @@ ol.ui.horizontal.list li:before,
 .ui.card > .content > .header {
   display: block;
   margin: 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   color: rgba(0, 0, 0, 0.85);
 }
 
@@ -22374,7 +22374,7 @@ a.ui.card:hover,
 .ui.items > .item > .content > .header {
   display: block;
   margin: -0.165em 0em 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-weight: bold;
   color: rgba(0, 0, 0, 0.85);
 }
@@ -22807,7 +22807,7 @@ a.ui.card:hover,
 
 .ui.statistics .statistic > .value,
 .ui.statistic > .value {
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 4rem;
   font-weight: normal;
   line-height: 1em;
@@ -22822,7 +22822,7 @@ a.ui.card:hover,
 
 .ui.statistics .statistic > .label,
 .ui.statistic > .label {
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1rem;
   font-weight: normal;
   color: rgba(0, 0, 0, 0.4);
@@ -23209,7 +23209,7 @@ a.ui.card:hover,
 
 .ui.accordion .title:not(.ui) {
   padding: 0.5em 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1em;
   color: rgba(0, 0, 0, 0.8);
 }
@@ -25439,7 +25439,7 @@ select.ui.dropdown {
 
 .ui.modal > .header {
   display: block;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.05)) #ffffff;
   background: -webkit-gradient(linear, left top, left bottom, from(transparent), to(rgba(0, 0, 0, 0.05))) #ffffff;
   background: linear-gradient(transparent, rgba(0, 0, 0, 0.05)) #ffffff;
@@ -26019,7 +26019,7 @@ a.ui.nag {
 
 .ui.popup > .header {
   padding: 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1.125em;
   line-height: 1.2;
   font-weight: bold;
@@ -27196,7 +27196,7 @@ a.ui.nag {
 }
 
 .ui.search > .results .result .title {
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-weight: bold;
   font-size: 1em;
   color: rgba(0, 0, 0, 0.85);
@@ -27222,7 +27222,7 @@ a.ui.nag {
 }
 
 .ui.search > .results > .message .header {
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1.1428em;
   font-weight: bold;
   color: rgba(0, 0, 0, 0.8);
@@ -27375,7 +27375,7 @@ a.ui.nag {
 .ui.category.search > .results .category > .name {
   width: 100px;
   background: #f0f0f0;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1em;
   float: 1em;
   float: left;
@@ -32070,7 +32070,7 @@ html.ios {
 .ui.form input[type="time"],
 .ui.form input[type="text"],
 .ui.form input[type="url"] {
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   margin: 0em;
   outline: none;
   -webkit-appearance: none;

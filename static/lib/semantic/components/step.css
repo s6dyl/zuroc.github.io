@@ -88,7 +88,7 @@
 
 /* Title */
 .ui.steps .step .title {
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1.0714em;
   font-weight: bold;
 }

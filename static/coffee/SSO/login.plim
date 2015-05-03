@@ -1,11 +1,11 @@
 -inherit _base.plim
 
 .field
-    input spellcheck="false" autocomplete="off" ms-duplex="o.username" placeholder="请输入您的 昵称 或 手机 或 邮箱"
+    input spellcheck="false" autocomplete="off" ms-duplex="o.account" name="account" placeholder="请输入您的 昵称 或 手机 或 邮箱"
     label 账号 
 
 .field
-    input autocomplete="off" ms-duplex="o.password" type="password" ms-duplex="o.password"
+    input autocomplete="off" ms-duplex="o.password" type="password" ms-duplex="o.password" name="password"
     label 密码
 
 .one.fluid.ui.inverted.buttons

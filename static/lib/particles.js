@@ -5,6 +5,7 @@
 /* How to use? : Check the GitHub README
 /* v1.1.0
 /* ----------------------------------------------- */
+define('/lib/particles', function(require, exports, module){
 
 function launchParticlesJS(tag_id, params){
 
@@ -659,3 +660,4 @@ window.particlesJS = function(tag_id, params){
   }
 
 };
+})

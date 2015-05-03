@@ -47,7 +47,13 @@ var require, define;
             }
         }
         script.type = 'text/javascript';
-        script.src =  "/static/modules/"+url+".js";
+        if(url.indexOf('/')==0){
+            src=url
+        }
+        else{
+            src="/modules/"+url
+        }
+        script.src =  "/static"+src+".js";
         head.appendChild(script);
         return script;
     }
@@ -206,30 +212,19 @@ var require, define;
         createScript(url);
     };
 
-    require.loadCss = function(cfg) {
-        if (cfg.content) {
-            var sty = document.createElement('style');
-            sty.type = 'text/css';
-
-            if (sty.styleSheet) {       // IE
-                sty.styleSheet.cssText = cfg.content;
-            } else {
-                sty.innerHTML = cfg.content;
-            }
-            head.appendChild(sty);
-        }
-        else if (cfg.url) {
-            var link = document.createElement('link');
-            link.href = cfg.url;
-            link.rel = 'stylesheet';
-            link.type = 'text/css';
-            head.appendChild(link);
-        }
+    require.css = function(cfg) {
+        var link = document.createElement('link');
+        link.href = "/static/css/"+cfg+".css";
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        head.appendChild(link);
     };
 
 
     require.alias = function(id) {return id};
 
     require.timeout = 5000;
+
+    window.require_async = require.async
 
 })(this);

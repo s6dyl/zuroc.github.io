@@ -36,7 +36,7 @@
 }
 .ui.popup > .header {
   padding: 0em;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-size: 1.125em;
   line-height: 1.2;
   font-weight: bold;

@@ -43,7 +43,7 @@
 /* Header */
 .ui.message .header {
   display: block;
-  font-family: "Fira Sans",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: Lato,'Hiragino Sans GB','Microsoft YaHei';
   font-weight: bold;
   margin: 0em 0em 0.5rem 0em;
 }
