@@ -90,24 +90,25 @@
   content: "\e600";
   color: #9C847F;
   font-size: 23px;
+  outline: 0;
   font-family: "iconfont";
 }
-/* line 68, ../scss/_base/_semantic.scss */
+/* line 69, ../scss/_base/_semantic.scss */
 .ui.dimmer.form .icon.close:hover:before {
   color: #fff;
   font-weight: bold;
 }
-/* line 72, ../scss/_base/_semantic.scss */
+/* line 73, ../scss/_base/_semantic.scss */
 .ui.dimmer.form .content {
   padding-top: 0;
 }
-/* line 75, ../scss/_base/_semantic.scss */
+/* line 76, ../scss/_base/_semantic.scss */
 .ui.dimmer.form .icon.close {
   opacity: 1;
   outline: 0;
 }
 
-/* line 82, ../scss/_base/_semantic.scss */
+/* line 83, ../scss/_base/_semantic.scss */
 .modal.basic .vc2 {
   width: 100%;
   text-align: center;
@@ -121,7 +122,7 @@
   height: 100%;
   right: 0;
 }
-/* line 94, ../scss/_base/_semantic.scss */
+/* line 95, ../scss/_base/_semantic.scss */
 .modal.basic .form input, .modal.basic .form input:focus {
   background: transparent;
   border: 2px solid #9C847F;
@@ -134,46 +135,46 @@
   padding-left: 77px;
   border-radius: 0;
 }
-/* line 107, ../scss/_base/_semantic.scss */
+/* line 108, ../scss/_base/_semantic.scss */
 .modal.basic .form .field.error input {
   border-color: #c00;
   border-radius: 0;
   background: rgba(255, 255, 255, 0.9);
   color: #c00;
 }
-/* line 113, ../scss/_base/_semantic.scss */
+/* line 114, ../scss/_base/_semantic.scss */
 .modal.basic .form input:focus {
   background: rgba(0, 0, 0, 0.5);
   border-color: #fff;
   color: #fff;
 }
-/* line 118, ../scss/_base/_semantic.scss */
+/* line 119, ../scss/_base/_semantic.scss */
 .modal.basic input:focus + label {
   color: #fff;
   border-right-color: #fff;
 }
-/* line 122, ../scss/_base/_semantic.scss */
+/* line 123, ../scss/_base/_semantic.scss */
 .modal.basic .form .field.error label {
   background: #c00;
   color: #fff;
   border-right-color: #c00;
 }
-/* line 127, ../scss/_base/_semantic.scss */
+/* line 128, ../scss/_base/_semantic.scss */
 .modal.basic .form .field.error input:focus + label {
   border-right-color: #f30;
 }
-/* line 130, ../scss/_base/_semantic.scss */
+/* line 131, ../scss/_base/_semantic.scss */
 .modal.basic .form .field.error input:focus {
   border-color: #f30;
   color: #f30;
   background: #ff0;
 }
-/* line 135, ../scss/_base/_semantic.scss */
+/* line 136, ../scss/_base/_semantic.scss */
 .modal.basic .ui.buttons .button {
   border-radius: 0;
   color: #9C847F;
 }
-/* line 139, ../scss/_base/_semantic.scss */
+/* line 140, ../scss/_base/_semantic.scss */
 .modal.basic .form label {
   color: #9C847F;
   border-right: 2px solid #9C847F;
@@ -190,16 +191,16 @@
   margin-top: 2px;
   margin-left: 2px;
 }
-/* line 156, ../scss/_base/_semantic.scss */
+/* line 157, ../scss/_base/_semantic.scss */
 .modal.basic .header {
   padding-bottom: 0;
 }
-/* line 159, ../scss/_base/_semantic.scss */
+/* line 160, ../scss/_base/_semantic.scss */
 .modal.basic .header p {
   font-size: 16px;
   margin-top: 32px;
 }
-/* line 163, ../scss/_base/_semantic.scss */
+/* line 164, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button:first-child {
   width: 100%;
   color: #fff !important;
@@ -210,56 +211,56 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-/* line 170, ../scss/_base/_semantic.scss */
+/* line 171, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button:first-child:focus, .modal.basic .one.ui.inverted.buttons .button:first-child:active, .modal.basic .one.ui.inverted.buttons .button:first-child:hover {
   color: #fff !important;
   background: rgba(255, 255, 255, 0.2) !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
-/* line 176, ../scss/_base/_semantic.scss */
+/* line 177, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button.ok {
   border: 2px solid rgba(255, 255, 255, 0.8);
 }
-/* line 179, ../scss/_base/_semantic.scss */
+/* line 180, ../scss/_base/_semantic.scss */
 .modal.basic .hideSubmit {
   position: absolute;
   left: -99999px;
 }
-/* line 183, ../scss/_base/_semantic.scss */
+/* line 184, ../scss/_base/_semantic.scss */
 .modal.basic input::selection {
   background: #a7bd06;
   color: #FFF;
 }
 
-/* line 186, ../scss/_base/_semantic.scss */
+/* line 187, ../scss/_base/_semantic.scss */
 .one.ui.inverted.buttons .button:first-child {
   margin: 20px auto 0;
 }
 
-/* line 189, ../scss/_base/_semantic.scss */
+/* line 190, ../scss/_base/_semantic.scss */
 .one.ui.fluid {
   text-align: center;
 }
-/* line 191, ../scss/_base/_semantic.scss */
+/* line 192, ../scss/_base/_semantic.scss */
 .one.ui.fluid .button {
   margin-top: 34px;
   width: 185px;
   float: none;
 }
 
-/* line 197, ../scss/_base/_semantic.scss */
+/* line 198, ../scss/_base/_semantic.scss */
 .ui.basic.modal > h1 {
   padding: 0 1.9rem;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 201, ../scss/_base/_semantic.scss */
+  /* line 202, ../scss/_base/_semantic.scss */
   .ui.basic.modal > h1 {
     padding: 0 1rem;
   }
 }
-/* line 205, ../scss/_base/_semantic.scss */
+/* line 206, ../scss/_base/_semantic.scss */
 h1 p {
   font-size: 1em;
 }
