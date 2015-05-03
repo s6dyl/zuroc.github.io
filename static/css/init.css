@@ -3138,11 +3138,9 @@ html, body, button, input, select, textarea, .ui-button, pre, p {
 /* junge-regular - latin */
 @font-face {
   font-family: 'Junge';
-  font-style: normal;
-  font-weight: 400;
-  src: url("/lib/font/junge-v4-latin-regular.eot");
+  src: url("/static/lib/font/junge/junge-v4-latin-regular.eot");
   /* IE9 Compat Modes */
-  src: local("Junge"), local("Junge-Regular"), url("/lib/font/junge-v4-latin-regular.eot?#iefix") format("embedded-opentype"), url("/lib/font/junge-v4-latin-regular.woff2") format("woff2"), url("/lib/font/junge-v4-latin-regular.woff") format("woff"), url("/lib/font/junge-v4-latin-regular.ttf") format("truetype"), url("/lib/font/junge-v4-latin-regular.svg#Junge") format("svg");
+  src: local("Junge"), local("Junge-Regular"), url("/static/lib/font/junge/junge-v4-latin-regular.eot?#iefix") format("embedded-opentype"), url("/static/lib/font/junge/junge-v4-latin-regular.woff2") format("woff2"), url("/static/lib/font/junge/junge-v4-latin-regular.woff") format("woff"), url("/static/lib/font/junge/junge-v4-latin-regular.ttf") format("truetype"), url("/static/lib/font/junge/junge-v4-latin-regular.svg#Junge") format("svg");
   /* Legacy iOS */
 }
 @font-face {
