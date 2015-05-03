@@ -1,29 +1,30 @@
 require.css "798/login0", ->
     $('body').html("<div id=\"particles-js\"></div><div style=\"display:none\" id=\"_798\"><div class=\"head vc2\"><div class=\"vc1\"><div class=\"vc0\"><h1>797.SPACE</h1><h2>打造你自己的垂直社区</h2><h3><span>&nbsp;</span></h3><div class=\"bar\"><a data-wow-delay=\"1s\" href=\"javascript:$$('SSO/auth.new');void(0)\" class=\"ui primary button wow bounceInRight\">注册</a><a data-wow-delay=\"1s\" href=\"javascript:$$('SSO/auth.login');void(0)\" class=\"ui basic button wow bounceInLeft\">登录</a></div></div></div></div></div>")
 
-
-    _798 = $("#_798").show()
-
-    _798.find('h1').textillate({ in: { effect: 'bounceInDown'}})
-    setTimeout(
-        ->
-            _798.find('h2').css('visibility','visible').textillate({ in: { effect: 'rollIn'} })
-            setTimeout(
-                ->
-                    h3 = _798.find("h3").css('visibility','visible')
-                    h3.find("span").typed({
-                        strings: ["创建独一无二的博客、论坛 和 SNS 就是如此简单"]
-                        typeSpeed: 100
-                    })
-                1000
-            )
-        1600
-    )
-    new WOW().init()
-
     require_async(
         "/lib/particles"
         ->
+            _798 = $("#_798").show()
+
+            _798.find('h1').textillate({ in: { effect: 'bounceInDown'}})
+            setTimeout(
+                ->
+                    _798.find('h2').css('visibility','visible').textillate({ in: { effect: 'rollIn'} })
+                    setTimeout(
+                        ->
+                            h3 = _798.find("h3").css('visibility','visible')
+                            h3.find("span").typed({
+                                strings: ["创建独一无二的博客、论坛 和 SNS 就是如此简单"]
+                                typeSpeed: 100
+                            })
+                        1000
+                    )
+                1600
+            )
+            new WOW().init()
+
+
+
             win = $ window
             win_size = win.height() * win.width()
             win_point_base= parseInt(win_size/22000)
