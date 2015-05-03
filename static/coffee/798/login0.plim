@@ -5,7 +5,7 @@
 link rel="stylesheet" href="/css/798/login0.css"
 
 #particles-js
-#_798
+#_798 style="display:none"
     .head.vc2
         .vc1
             .vc0 
