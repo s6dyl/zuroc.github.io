@@ -1,10 +1,5 @@
 ###
-@require /lib/wow.js
-@require /lib/jquery.lettering.js
-@require /lib/jquery.textillate.js
-@require /lib/jquery.typed.js
 @require /css/798.css
-@require /css/_base/typed.css
 ###
 $ ->
     NProgress.done()
@@ -15,12 +10,15 @@ if width<min_width
     document.write("""<style>body{zoom:#{(width/415).toFixed(4)}</style>""")
 
 current_user = AV.User.current()
-current_user?.fetch()
-src="798/login#{!!current_user-0}"
+src=""
 
+if current_user
+    current_user.fetch()
+    src = "/static/modules/798/login1.js"
+else
+    src = "/static/modules/798/login0.js"
 
-
-document.write("""<script src="/static/modules/#{src}.js"></script><script>require("#{src}")</script>""")
+document.write("""<script src="#{src}"></script><script>require("798/login#{!!current_user-0}")</script>""")
 
 
 

@@ -1,9 +1,1 @@
-/* line 1, ../../scss/_base/spinkit.scss */
-#xpureLoader {
-  position: fixed;
-  margin: auto;
-  left: 50%;
-  margin-left: -45px;
-  top: 50%;
-  margin-top: -45px;
-}
+#xpureLoader{position:fixed;margin:auto;left:50%;margin-left:-45px;top:50%;margin-top:-45px}
