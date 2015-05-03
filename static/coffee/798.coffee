@@ -11,10 +11,12 @@ clientWidth = document.documentElement.clientWidth
 
 if clientWidth < 414
     scale = clientWidth/414
-    document.querySelector("meta[name=viewport]").setAttribute(
-        'content',
-        "width=device-width, initial-scale=#{scale}, maximum-scale=#{scale}, user-scalable=0"
-    )
+else
+    scale = 1
+document.querySelector("meta[name=viewport]").setAttribute(
+    'content',
+    "width=device-width, initial-scale=#{scale}, maximum-scale=#{scale}, user-scalable=0"
+)
 
 
 $ ->
