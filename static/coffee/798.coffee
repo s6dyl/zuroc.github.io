@@ -4,10 +4,7 @@
 $ ->
     NProgress.done()
 
-width = $(window).width()
-min_width=414
-if width<min_width
-    document.write("""<style>body{zoom:#{(width/415).toFixed(4)}</style>""")
+
 
 current_user = AV.User.current()
 src=""
