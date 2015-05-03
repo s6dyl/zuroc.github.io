@@ -7,6 +7,19 @@
 @require /css/_base/typed.css
 ###
 
+clientWidth = document.documentElement.clientWidth
+
+if clientWidth <= 320
+    document.querySelector("meta[name=viewport]").setAttribute(
+        'content',
+        'width=device-width, initial-scale=0.8, maximum-scale=0.8, user-scalable=0'
+    )
+else if clientWidth <= 375
+    document.querySelector("meta[name=viewport]").setAttribute(
+        'content',
+        'width=device-width, initial-scale=0.9, maximum-scale=0.9, user-scalable=0'
+    )
+
 
 $ ->
     NProgress.done()
