@@ -4,7 +4,10 @@
 $ ->
     NProgress.done()
 
-
+clientWidth = $(window).width()
+if clientWidth < 414
+    scale = (clientWidth/414)
+    document.write("<style>body{zoom:#{scale}}</style>")
 
 current_user = AV.User.current()
 src=""

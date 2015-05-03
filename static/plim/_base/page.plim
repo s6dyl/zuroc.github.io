@@ -4,14 +4,6 @@ head
     meta http-equiv="X-UA-Compatible" content="IE=edge"
     script src="https://leancloud.cn/scripts/lib/av-0.5.1.min.js"
     meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
-    -coffee
-        clientWidth = $(window).width()
-        if clientWidth < 414
-            scale = (clientWidth/414).toFixed(4)
-            document.querySelector("meta[name=viewport]").setAttribute(
-                'content',
-                "width=device-width, initial-scale=#{scale}, maximum-scale=#{scale}, user-scalable=0"
-            )
 
     <!-- @require /lib/mod.js -->
     <!-- @require /lib/config.js -->
