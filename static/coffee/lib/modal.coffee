@@ -17,14 +17,15 @@ $.modal_alert = (html, option={}) ->
 
 $.modal = (html,  option, id,  callback)->
     if id
-        html = $ "<div>#{html}</div>"
+        html = $ """<div class="ui basic modal" style="height:100%;">#{html}</div>"""
         html.attr("ms-view",id)
     option = option or {}
+    option.transition = option.transition or "horizontal flip"
     real = option.onHidden
 
     onHidden = ->
         $(@parentNode).remove()
-        if id and id in V
+        if id and V[id]
             delete V[id]
        # alert html.html()
 
@@ -36,15 +37,6 @@ $.modal = (html,  option, id,  callback)->
         option.onHidden = onHidden
 
     elem = $(html)
-#    option.queue
-#    if not option.allowMultiple
-#        while 1
-#            p = _buffer.pop()
-#            if p
-#                p.modal('remove')
-#            else
-#                break
-#    _buffer.push elem
     show = ->
         elem.modal(option).modal('show')
 
@@ -62,11 +54,13 @@ $.modal = (html,  option, id,  callback)->
             )
         
     if not option.allowMultiple
+        dbg = """<div class="ui dimmer modals page transition visible active #{option.dimmerClassName or ''}">"""
+        $('body').prepend(dbg)
         ui = $(".ui.modal")
         if ui.length
-            ui.modal('hide all', show)
+            ui.modal('hide all', ->
+                show()
+            )
         else
             show()
-
-
 

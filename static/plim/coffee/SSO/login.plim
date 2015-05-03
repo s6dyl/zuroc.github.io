@@ -1,0 +1,37 @@
+-scss
+
+    #SsoAuthLogin .login{
+        margin-top:3em;color:#9C847F
+    }
+    #SsoAuthLogin .login a{
+        color:#9C847F
+    }
+    #SsoAuthLogin{
+        height:100%;
+    }
+    #SsoAuthLogin .login a:hover{
+        color:#fff;
+        padding-bottom:5px;
+        border-bottom:2px solid #fff;
+    }
+
+
+i class="close icon"
+
+form#SsoAuthLogin
+    .vc2
+        .vc1
+            div style="max-width:600px;margin:auto"
+                .content
+                    .description.ui.form
+                        .field
+                        input spellcheck="false" autocomplete="off"
+                        label 邮箱
+                        .one.fluid.ui.inverted.buttons
+                            button.ui.green.ok.basic.inverted.button type="submit" 创建账号 
+                        .login 已经注册 ？ 
+                            a href="javascript:$$('SSO/auth.login');void(0)" 点此登录
+    input type="submit" class="hideSubmit"
+
+
+

@@ -2,6 +2,8 @@
 ---!
     from config import HOST 
 
+<!-- @require /lib/particles.js -->
+
 -block script
     script
         require('798')
@@ -9,6 +11,7 @@
 script        
     NProgress.inc()
 
+#particles-js
 #_798
     .head.vc2
         .vc1

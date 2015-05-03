@@ -7,7 +7,6 @@ fancybox = $.fancybox;
 require_loading = function(url, callback) {
   NProgress.inc();
   return require.async(url, function() {
-    console.log(url);
     require(url);
     NProgress.done();
     return callback();

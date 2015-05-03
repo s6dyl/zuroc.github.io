@@ -5,7 +5,6 @@ require_loading = (url, callback)->
     require.async(
         url
         ->
-            console.log url
             require(url)
             NProgress.done()
             callback()

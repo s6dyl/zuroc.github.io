@@ -548,7 +548,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: "Karma",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+  font-family: "Junge",'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, 'Hiragino Sans GB', 'Microsoft YaHei', STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
   line-height: 1.33em;
   margin: -webkit-calc(2rem -  0.165em ) 0em 1rem;
   margin: calc(2rem -  0.165em ) 0em 1rem;
@@ -615,12 +615,12 @@ p:last-child {
 --------------------*/
 
 a {
-  color: #009fda;
+  color: #0bf;
   text-decoration: none;
 }
 
 a:hover {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /*******************************
@@ -10938,7 +10938,7 @@ ol.ui.list ol,
 
 .ui.list .list > a.item:hover,
 .ui.list > a.item:hover {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /* Linked Item Icons */
@@ -10956,7 +10956,7 @@ ol.ui.list ol,
 }
 
 .ui.list .item a:hover {
-  color: #00b2f3 !important;
+  color: #0ef !important;
 }
 
 /* Header */
@@ -11132,7 +11132,7 @@ ol.ui.list ol,
 
 .ui.inverted.list .list > a.item:hover,
 .ui.inverted.list > a.item:hover {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /* Linking Content */
@@ -11143,7 +11143,7 @@ ol.ui.list ol,
 }
 
 .ui.inverted.list .item a:hover {
-  color: #00b2f3 !important;
+  color: #0ef !important;
 }
 
 /*-------------------
@@ -13439,7 +13439,7 @@ ol.ui.horizontal.list li:before,
 }
 
 .ui.steps .step.active .title {
-  color: #009fda;
+  color: #0bf;
 }
 
 .ui.ordered.steps .step.active:before,
@@ -13696,11 +13696,11 @@ ol.ui.horizontal.list li:before,
 /* Link */
 
 .ui.breadcrumb a {
-  color: #009fda;
+  color: #0bf;
 }
 
 .ui.breadcrumb a:hover {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /* Icon Divider */
@@ -20956,7 +20956,7 @@ ol.ui.horizontal.list li:before,
 
 .ui.cards > .card > .content > a.header:hover,
 .ui.card > .content > a.header:hover {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /* Meta */
@@ -21077,7 +21077,7 @@ ol.ui.horizontal.list li:before,
 
 .ui.cards > .card > .extra a:not(.ui):hover,
 .ui.card > .extra a:not(.ui):hover {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /*******************************
@@ -21786,7 +21786,7 @@ a.ui.card:hover,
 }
 
 .ui.comments .comment a.author:hover {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /*--------------
@@ -22483,7 +22483,7 @@ a.ui.card:hover,
 }
 
 .ui.items > .item > .content > a.header:hover {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /* Meta */
@@ -22707,7 +22707,7 @@ a.ui.card:hover,
 
 .ui.items a.item:hover .content .header,
 .ui.link.items > .item:hover .content .header {
-  color: #00b2f3;
+  color: #0ef;
 }
 
 /*--------------

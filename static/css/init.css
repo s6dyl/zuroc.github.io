@@ -47,52 +47,66 @@
   border-color: #d1e1fc !important;
 }
 
-/* line 37, ../scss/_base/_semantic.scss */
+/* line 36, ../scss/_base/_semantic.scss */
 .ui.dimmer.red {
-  background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.29804), rgba(0, 0, 0, 0.95294));
-  background-image: radial-gradient(rgba(0, 0, 0, 0.29804), rgba(0, 0, 0, 0.95294));
   background-color: #d20;
 }
-/* line 40, ../scss/_base/_semantic.scss */
-.ui.dimmer.red .header {
+
+/* line 39, ../scss/_base/_semantic.scss */
+.ui.dimmer.green {
+  background-color: #084;
+}
+
+/* line 42, ../scss/_base/_semantic.scss */
+.ui.dimmer.purple {
+  background-color: #AD00B5;
+}
+
+/* line 45, ../scss/_base/_semantic.scss */
+.ui.dimmer.form {
+  background-image: -webkit-radial-gradient(rgba(0, 0, 0, 0.29804), rgba(0, 0, 0, 0.95294));
+  background-image: radial-gradient(rgba(0, 0, 0, 0.29804), rgba(0, 0, 0, 0.95294));
+}
+/* line 47, ../scss/_base/_semantic.scss */
+.ui.dimmer.form .header {
   background: transparent;
   border: 0;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
-/* line 45, ../scss/_base/_semantic.scss */
-.ui.dimmer.red .ui.modal {
+/* line 52, ../scss/_base/_semantic.scss */
+.ui.dimmer.form .ui.modal {
   margin: 0 !important;
   width: 100%;
   left: 0;
   top: 0;
 }
-/* line 51, ../scss/_base/_semantic.scss */
-.ui.dimmer.red .header {
+/* line 58, ../scss/_base/_semantic.scss */
+.ui.dimmer.form .header {
   font-weight: normal;
 }
-/* line 55, ../scss/_base/_semantic.scss */
-.ui.dimmer.red .icon.close:before {
+/* line 62, ../scss/_base/_semantic.scss */
+.ui.dimmer.form .icon.close:before {
   content: "\e600";
   color: #9C847F;
   font-size: 23px;
   font-family: "iconfont";
 }
-/* line 61, ../scss/_base/_semantic.scss */
-.ui.dimmer.red .icon.close:hover:before {
+/* line 68, ../scss/_base/_semantic.scss */
+.ui.dimmer.form .icon.close:hover:before {
   color: #fff;
   font-weight: bold;
 }
-/* line 65, ../scss/_base/_semantic.scss */
-.ui.dimmer.red .content {
+/* line 72, ../scss/_base/_semantic.scss */
+.ui.dimmer.form .content {
   padding-top: 0;
 }
-/* line 68, ../scss/_base/_semantic.scss */
-.ui.dimmer.red .icon.close {
+/* line 75, ../scss/_base/_semantic.scss */
+.ui.dimmer.form .icon.close {
   opacity: 1;
 }
 
-/* line 74, ../scss/_base/_semantic.scss */
+/* line 81, ../scss/_base/_semantic.scss */
 .modal.basic .vc2 {
   width: 100%;
   text-align: center;
@@ -106,7 +120,7 @@
   height: 100%;
   right: 0;
 }
-/* line 86, ../scss/_base/_semantic.scss */
+/* line 93, ../scss/_base/_semantic.scss */
 .modal.basic .form input, .modal.basic .form input:focus {
   background: transparent;
   border: 2px solid #9C847F;
@@ -119,69 +133,72 @@
   padding-left: 77px;
   border-radius: 0;
 }
-/* line 98, ../scss/_base/_semantic.scss */
-.modal.basic .form input.ERR {
-  border-color: #a20;
+/* line 106, ../scss/_base/_semantic.scss */
+.modal.basic .form .field.error input {
+  border-color: #c00;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.9);
+  color: #c00;
 }
-/* line 101, ../scss/_base/_semantic.scss */
+/* line 112, ../scss/_base/_semantic.scss */
 .modal.basic .form input:focus {
   background: rgba(0, 0, 0, 0.5);
   border-color: #fff;
   color: #fff;
 }
-/* line 106, ../scss/_base/_semantic.scss */
+/* line 117, ../scss/_base/_semantic.scss */
 .modal.basic input:focus + label {
   color: #fff;
   border-right-color: #fff;
 }
-/* line 110, ../scss/_base/_semantic.scss */
-.modal.basic .form input.ERR + label {
-  color: #a20;
-  border-right-color: #a20;
-}
-/* line 114, ../scss/_base/_semantic.scss */
-.modal.basic .form input.ERR:focus + label {
-  border-right-color: #c00;
-  color: #c00;
-}
-/* line 118, ../scss/_base/_semantic.scss */
-.modal.basic .form input.ERR:focus {
-  border-color: #c00;
-}
 /* line 121, ../scss/_base/_semantic.scss */
-.modal.basic .form .tip-err {
-  margin-left: 6px;
+.modal.basic .form .field.error label {
+  background: #c00;
+  color: #fff;
+  border-right-color: #c00;
 }
-/* line 124, ../scss/_base/_semantic.scss */
+/* line 126, ../scss/_base/_semantic.scss */
+.modal.basic .form .field.error input:focus + label {
+  border-right-color: #f30;
+}
+/* line 129, ../scss/_base/_semantic.scss */
+.modal.basic .form .field.error input:focus {
+  border-color: #f30;
+  color: #f30;
+  background: #ff0;
+}
+/* line 134, ../scss/_base/_semantic.scss */
 .modal.basic .ui.buttons .button {
   border-radius: 0;
   color: #9C847F;
 }
-/* line 128, ../scss/_base/_semantic.scss */
+/* line 138, ../scss/_base/_semantic.scss */
 .modal.basic .form label {
   color: #9C847F;
   border-right: 2px solid #9C847F;
   display: inline-block;
-  height: 46px;
   font-size: 16px;
-  line-height: 48px;
+  line-height: 46px;
   margin-right: -64px;
   text-align: center;
   vertical-align: top;
   width: 64px;
   position: absolute;
   left: 0;
+  height: 44px;
+  margin-top: 2px;
+  margin-left: 2px;
 }
-/* line 142, ../scss/_base/_semantic.scss */
+/* line 155, ../scss/_base/_semantic.scss */
 .modal.basic .header {
   padding-bottom: 0;
 }
-/* line 145, ../scss/_base/_semantic.scss */
+/* line 158, ../scss/_base/_semantic.scss */
 .modal.basic .header p {
   font-size: 16px;
   margin-top: 32px;
 }
-/* line 149, ../scss/_base/_semantic.scss */
+/* line 162, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button:first-child {
   width: 100%;
   color: #fff !important;
@@ -192,56 +209,56 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-/* line 156, ../scss/_base/_semantic.scss */
+/* line 169, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button:first-child:focus, .modal.basic .one.ui.inverted.buttons .button:first-child:active, .modal.basic .one.ui.inverted.buttons .button:first-child:hover {
   color: #fff !important;
   background: rgba(255, 255, 255, 0.2) !important;
   -webkit-box-shadow: none !important;
           box-shadow: none !important;
 }
-/* line 162, ../scss/_base/_semantic.scss */
+/* line 175, ../scss/_base/_semantic.scss */
 .modal.basic .one.ui.inverted.buttons .button.ok {
   border: 2px solid rgba(255, 255, 255, 0.8);
 }
-/* line 165, ../scss/_base/_semantic.scss */
+/* line 178, ../scss/_base/_semantic.scss */
 .modal.basic .hideSubmit {
   position: absolute;
   left: -99999px;
 }
-/* line 169, ../scss/_base/_semantic.scss */
+/* line 182, ../scss/_base/_semantic.scss */
 .modal.basic input::selection {
   background: #a7bd06;
   color: #FFF;
 }
 
-/* line 172, ../scss/_base/_semantic.scss */
+/* line 185, ../scss/_base/_semantic.scss */
 .one.ui.inverted.buttons .button:first-child {
   margin: 20px auto 0;
 }
 
-/* line 175, ../scss/_base/_semantic.scss */
+/* line 188, ../scss/_base/_semantic.scss */
 .one.ui.fluid {
   text-align: center;
 }
-/* line 177, ../scss/_base/_semantic.scss */
+/* line 190, ../scss/_base/_semantic.scss */
 .one.ui.fluid .button {
   margin-top: 34px;
   width: 185px;
   float: none;
 }
 
-/* line 183, ../scss/_base/_semantic.scss */
+/* line 196, ../scss/_base/_semantic.scss */
 .ui.basic.modal > h1 {
   padding: 0 1.9rem;
 }
 
 @media only screen and (max-width: 767px) {
-  /* line 187, ../scss/_base/_semantic.scss */
+  /* line 200, ../scss/_base/_semantic.scss */
   .ui.basic.modal > h1 {
     padding: 0 1rem;
   }
 }
-/* line 191, ../scss/_base/_semantic.scss */
+/* line 204, ../scss/_base/_semantic.scss */
 h1 p {
   font-size: 1em;
 }
@@ -3119,11 +3136,11 @@ html, body, button, input, select, textarea, .ui-button, pre, p {
   src: local("Fira Sans Light"), url("//dn-ac88.qbox.me/firasans-light.eot") format("embedded-opentype"), url("//dn-ac88.qbox.me/firasans-light.woff") format("woff"), url("//dn-ac88.qbox.me/firasans-light.ttf") format("truetype");
 }
 @font-face {
-  font-family: 'Karma';
+  font-family: 'Junge';
   font-style: normal;
   font-weight: 400;
-  src: local("Karma Regular"), local("Karma-Regular"), url(/static/lib/font/Karma.woff2) format("woff2");
-  unicode-range: U+02BC, U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200B-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+  src: local("Junge"), local("Junge-Regular"), url(/static/lib/font/Junge.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
 @font-face {
   font-family: "iconfont";

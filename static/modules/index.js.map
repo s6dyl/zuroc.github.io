@@ -1,9 +1,9 @@
 {
   "version": 3,
   "file": "index.js",
-  "sourceRoot": "../../../798/pure",
+  "sourceRoot": "..",
   "sources": [
-    "../../xpure/pure/coffee/index.coffee"
+    "coffee/index.coffee"
   ],
   "names": [],
   "mappings": ";AAAA,CAAA,CAAE,8BAAF,CAAiC,CAAC,KAAlC,CAAwC,SAAA,GAAA;SACpC,CAAA,CAAE,aAAF,CAAgB,CAAC,OAAjB,CAAyB,QAAzB,EADoC;AAAA,CAAxC,CAAA,CAAA"

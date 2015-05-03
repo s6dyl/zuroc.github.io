@@ -1,9 +1,9 @@
 {
   "version": 3,
   "file": "auth.js",
-  "sourceRoot": "../../../../798/pure",
+  "sourceRoot": "../..",
   "sources": [
-    "../../xpure/pure/coffee/modal/auth.coffee"
+    "coffee/modal/auth.coffee"
   ],
   "names": [],
   "mappings": ";AAAA,CAAC,CAAC,WAAF,CAAc,MAAd,CAAA,CAAA"

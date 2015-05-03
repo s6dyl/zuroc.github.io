@@ -316,7 +316,8 @@ avalon.mix({
             var callback = function (e){
                 var ret = fn.call(el, e);
                 if (ret === false) {
-                        ex.stopPropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
                 }
             }
             el.addEventListener(type, callback, !!phase)
