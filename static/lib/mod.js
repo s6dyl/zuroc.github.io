@@ -1,1 +1,228 @@
-var require,define;!function(e){function r(e,r){function t(){clearTimeout(a)}if(!(e in s)){s[e]=!0;var i=document.createElement("script");if(r){var a=setTimeout(r,require.timeout);i.onerror=function(){clearTimeout(a),r()},"onload"in i?i.onload=t:i.onreadystatechange=function(){("loaded"==this.readyState||"complete"==this.readyState)&&t()}}return i.type="text/javascript",src=0==e.indexOf("/")?e:"/modules/"+e,i.src="//"+CONST.CDN+"/static"+src+".js",n.appendChild(i),i}}function t(e,t,n){var a=i[e]||(i[e]=[]);a.push(t);var o,s=u[e]||{},l=s.pkg;o=l?c[l].url:s.url||e,r(o,n&&function(){n(e)})}var n=document.getElementsByTagName("head")[0],i={},a={},o={},s={},u={},c={};define=function(e,r){a[e]=r;var t=i[e];if(t){for(var n=0,o=t.length;o>n;n++)t[n]();delete i[e]}},require=function(e){if(e&&e.splice)return require.async.apply(this,arguments);e=require.alias(e);var r=o[e];if(r)return r.exports;var t=a[e];if(!t)throw"[ModJS] Cannot find module `"+e+"`";r=o[e]={exports:{}};var n="function"==typeof t?t.apply(r,[require,r.exports,r]):t;return n&&(r.exports=n),r.exports},require.async=function(r,n,i){function o(e){for(var r=0,n=e.length;n>r;r++){var c=e[r];if(c in a){var l=u[c];l&&"deps"in l&&o(l.deps)}else if(!(c in f)){f[c]=!0,d++,t(c,s,i);var l=u[c];l&&"deps"in l&&o(l.deps)}}}function s(){if(0==d--){for(var t=[],i=0,a=r.length;a>i;i++)t[i]=require(r[i]);n&&n.apply(e,t)}}"string"==typeof r&&(r=[r]);for(var c=0,l=r.length;l>c;c++)r[c]=require.alias(r[c]);var f={},d=0;o(r),s()},require.resourceMap=function(e){var r,t;t=e.res;for(r in t)t.hasOwnProperty(r)&&(u[r]=t[r]);t=e.pkg;for(r in t)t.hasOwnProperty(r)&&(c[r]=t[r])},require.loadJs=function(e){r(e)},require.css=function(e,r,t){var n=document.getElementsByTagName("head")[0],i=document.createElement("link"),a="/static/css/"+e+".css";i.setAttribute("href",a),i.setAttribute("rel","stylesheet"),i.setAttribute("type","text/css");var o,s;"sheet"in i?(o="sheet",s="cssRules"):(o="styleSheet",s="rules");var u=setInterval(function(){try{i[o]&&i[o][s].length&&(clearInterval(u),clearTimeout(c),r.call(t||window,!0,i))}catch(e){}finally{}},10),c=setTimeout(function(){clearInterval(u),clearTimeout(c),n.removeChild(i),r.call(t||window,!1,i)},15e3);n.appendChild(i)},require.alias=function(e){return e},require.timeout=5e3,window.require_async=require.async}(this);
+/**
+ * file: mod.js
+ * ver: 1.0.10
+ * update: 2015/04/16
+ *
+ * https://github.com/fex-team/mod
+ */
+var require, define;
+
+(function(global) {
+    var head = document.getElementsByTagName('head')[0],
+        loadingMap = {},
+        factoryMap = {},
+        modulesMap = {},
+        scriptsMap = {},
+        resMap = {},
+        pkgMap = {};
+
+    function createScript(url, onerror) {
+        if (url in scriptsMap) return;
+        scriptsMap[url] = true;
+
+        var script = document.createElement('script');
+        if (onerror) {
+            var tid = setTimeout(onerror, require.timeout);
+
+            script.onerror = function() {
+                clearTimeout(tid);
+                onerror();
+            };
+
+            function onload() {
+                clearTimeout(tid);
+            }
+
+            if ('onload' in script) {
+                script.onload = onload;
+            } else {
+                script.onreadystatechange = function() {
+                    if (this.readyState == 'loaded' || this.readyState == 'complete') {
+                        onload();
+                    }
+                }
+            }
+        }
+        script.type = 'text/javascript';
+        script.src = url;
+        head.appendChild(script);
+        return script;
+    }
+
+    function loadScript(id, callback, onerror) {
+        var queue = loadingMap[id] || (loadingMap[id] = []);
+        queue.push(callback);
+
+        //
+        // resource map query
+        //
+        var res = resMap[id] || resMap[id + '.js'] || {};
+        var pkg = res.pkg;
+        var url;
+
+        if (pkg) {
+            url = pkgMap[pkg].url;
+        } else {
+            url = res.url || id;
+        }
+
+        createScript(url, onerror && function() {
+            onerror(id);
+        });
+    }
+
+    define = function(id, factory) {
+        id = id.replace(/\.js$/i, '');
+        factoryMap[id] = factory;
+
+        var queue = loadingMap[id];
+        if (queue) {
+            for (var i = 0, n = queue.length; i < n; i++) {
+                queue[i]();
+            }
+            delete loadingMap[id];
+        }
+    };
+
+    require = function(id) {
+
+        // compatible with require([dep, dep2...]) syntax.
+        if (id && id.splice) {
+            return require.async.apply(this, arguments);
+        }
+
+        id = require.alias(id);
+
+        var mod = modulesMap[id];
+        if (mod) {
+            return mod.exports;
+        }
+
+        //
+        // init module
+        //
+        var factory = factoryMap[id];
+        if (!factory) {
+            throw '[ModJS] Cannot find module `' + id + '`';
+        }
+
+        mod = modulesMap[id] = {
+            exports: {}
+        };
+
+        //
+        // factory: function OR value
+        //
+        var ret = (typeof factory == 'function') ? factory.apply(mod, [require, mod.exports, mod]) : factory;
+
+        if (ret) {
+            mod.exports = ret;
+        }
+        return mod.exports;
+    };
+
+    require.async = function(names, onload, onerror) {
+        if (typeof names == 'string') {
+            names = [names];
+        }
+
+        var needMap = {};
+        var needNum = 0;
+
+        function findNeed(depArr) {
+            for (var i = 0, n = depArr.length; i < n; i++) {
+                //
+                // skip loading or loaded
+                //
+                var dep = require.alias(depArr[i]);
+
+                if (dep in factoryMap) {
+                    // check whether loaded resource's deps is loaded or not
+                    var child = resMap[dep] || resMap[dep + '.js'];
+                    if (child && 'deps' in child) {
+                        findNeed(child.deps);
+                    }
+                    continue;
+                }
+
+                if (dep in needMap) {
+                    continue;
+                }
+
+                needMap[dep] = true;
+                needNum++;
+                loadScript(dep, updateNeed, onerror);
+
+                var child = resMap[dep] || resMap[dep + '.js'];
+                if (child && 'deps' in child) {
+                    findNeed(child.deps);
+                }
+            }
+        }
+
+        function updateNeed() {
+            if (0 == needNum--) {
+                var args = [];
+                for (var i = 0, n = names.length; i < n; i++) {
+                    args[i] = require(names[i]);
+                }
+
+                onload && onload.apply(global, args);
+            }
+        }
+
+        findNeed(names);
+        updateNeed();
+    };
+
+    require.resourceMap = function(obj) {
+        var k, col;
+
+        // merge `res` & `pkg` fields
+        col = obj.res;
+        for (k in col) {
+            if (col.hasOwnProperty(k)) {
+                resMap[k] = col[k];
+            }
+        }
+
+        col = obj.pkg;
+        for (k in col) {
+            if (col.hasOwnProperty(k)) {
+                pkgMap[k] = col[k];
+            }
+        }
+    };
+
+    require.loadJs = function(url) {
+        createScript(url);
+    };
+
+    require.loadCss = function(cfg) {
+        if (cfg.content) {
+            var sty = document.createElement('style');
+            sty.type = 'text/css';
+
+            if (sty.styleSheet) { // IE
+                sty.styleSheet.cssText = cfg.content;
+            } else {
+                sty.innerHTML = cfg.content;
+            }
+            head.appendChild(sty);
+        } else if (cfg.url) {
+            var link = document.createElement('link');
+            link.href = cfg.url;
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            head.appendChild(link);
+        }
+    };
+
+
+    require.alias = function(id) {
+        return id.replace(/\.js$/i, '');
+    };
+
+    require.timeout = 5000;
+
+})(this);

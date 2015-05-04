@@ -1,1 +1,1038 @@
-!function(n,i,e,t){"use strict";n.fn.transition=function(){{var a,o=n(this),r=o.selector||"",s=(new Date).getTime(),l=[],u=arguments,m=u[0],c=[].slice.call(arguments,1),d="string"==typeof m;i.requestAnimationFrame||i.mozRequestAnimationFrame||i.webkitRequestAnimationFrame||i.msRequestAnimationFrame||function(n){setTimeout(n,0)}}return o.each(function(i){var f,p,g,v,b,y,h,w,C,A,S,T=n(this),x=this;S={initialize:function(){f=S.get.settings.apply(x,u),v=f.className,g=f.error,b=f.metadata,A="."+f.namespace,C="module-"+f.namespace,p=T.data(C)||S,h=S.get.animationEndEvent(),w=S.get.animationName(),y=S.get.animationStartEvent(),d&&(d=S.invoke(m)),d===!1&&(S.verbose("Converted arguments into settings object",f),f.interval?S.delay(f.animate):S.animate(),S.instantiate())},instantiate:function(){S.verbose("Storing instance of module",S),p=S,T.data(C,p)},destroy:function(){S.verbose("Destroying previous module for",x),T.removeData(C)},refresh:function(){S.verbose("Refreshing display type on next animation"),delete S.displayType},forceRepaint:function(){S.verbose("Forcing element repaint");var n=T.parent(),i=T.next();0===i.length?T.detach().appendTo(n):T.detach().insertBefore(i)},repaint:function(){S.verbose("Repainting element");x.offsetWidth},delay:function(n){var e,a=f.reverse===!0,r="auto"==f.reverse&&S.get.direction()==v.outward;n=typeof n!==t?n:f.interval,e=a||r?(o.length-i)*f.interval:i*f.interval,S.debug("Delaying animation by",e),setTimeout(S.animate,e)},animate:function(n){if(f=n||f,!S.is.supported())return S.error(g.support),!1;if(S.debug("Preparing animation",f.animation),S.is.animating()){if(f.queue)return!f.allowRepeats&&S.has.direction()&&S.is.occurring()&&S.queuing!==!0?S.debug("Animation is currently occurring, preventing queueing same animation",f.animation):S.queue(f.animation),!1;if(!f.allowRepeats&&S.is.occurring())return S.debug("Animation is already occurring, will not execute repeated animation",f.animation),!1;S.debug("New animation started, completing previous early",f.animation),S.complete()}S.can.animate()?S.set.animating(f.animation):S.error(g.noAnimation,f.animation,x)},reset:function(){S.debug("Resetting animation to beginning conditions"),S.remove.animationCallbacks(),S.restore.conditions(),S.remove.animating()},queue:function(n){S.debug("Queueing animation of",n),S.queuing=!0,T.one(h+".queue"+A,function(){S.queuing=!1,S.repaint(),S.animate.apply(this,f)})},complete:function(){S.debug("Animation complete",f.animation),S.remove.completeCallback(),S.remove.failSafe(),S.is.looping()||(S.is.outward()?(S.verbose("Animation is outward, hiding element"),S.restore.conditions(),S.hide(),f.onHide.call(this)):S.is.inward()?(S.verbose("Animation is outward, showing element"),S.restore.conditions(),S.show(),f.onShow.call(this)):S.restore.conditions(),S.remove.animation(),S.remove.animating()),f.onComplete.call(this)},has:{direction:function(i){var e=!1;return i=i||f.animation,"string"==typeof i&&(i=i.split(" "),n.each(i,function(n,i){(i===v.inward||i===v.outward)&&(e=!0)})),e},inlineDisplay:function(){var i=T.attr("style")||"";return n.isArray(i.match(/display.*?;/,""))}},set:{animating:function(n){n=n||f.animation,S.is.animating()||S.save.conditions(),S.remove.direction(),S.remove.completeCallback(),S.can.transition()&&!S.has.direction()&&S.set.direction(),S.remove.hidden(),S.set.display(),T.addClass(v.animating+" "+v.transition+" "+n).addClass(n).one(h+".complete"+A,S.complete),f.useFailSafe&&S.add.failSafe(),S.set.duration(f.duration),f.onStart.call(this),S.debug("Starting tween",n,T.attr("class"))},duration:function(n,i){i=i||f.duration,i="number"==typeof i?i+"ms":i,(i||0===i)&&(S.verbose("Setting animation duration",i),T.css({"-webkit-animation-duration":i,"-moz-animation-duration":i,"-ms-animation-duration":i,"-o-animation-duration":i,"animation-duration":i}))},display:function(){var n=S.get.style(),i=S.get.displayType(),e=n+"display: "+i+" !important;";T.css("display",""),S.refresh(),T.css("display")!==i&&(S.verbose("Setting inline visibility to",i),T.attr("style",e))},direction:function(){T.is(":visible")&&!S.is.hidden()?(S.debug("Automatically determining the direction of animation","Outward"),T.removeClass(v.inward).addClass(v.outward)):(S.debug("Automatically determining the direction of animation","Inward"),T.removeClass(v.outward).addClass(v.inward))},looping:function(){S.debug("Transition set to loop"),T.addClass(v.looping)},hidden:function(){S.is.hidden()||T.addClass(v.transition).addClass(v.hidden),"none"!==T.css("display")&&(S.verbose("Overriding default display to hide element"),T.css("display","none"))},visible:function(){T.addClass(v.transition).addClass(v.visible)}},save:{displayType:function(n){T.data(b.displayType,n)},transitionExists:function(i,e){n.fn.transition.exists[i]=e,S.verbose("Saving existence of transition",i,e)},conditions:function(){T.attr("class")||!1,T.attr("style")||"";T.removeClass(f.animation),S.remove.direction(),S.cache={className:T.attr("class"),style:S.get.style()},S.verbose("Saving original attributes",S.cache)}},restore:{conditions:function(){return S.cache===t?!1:(S.cache.className?T.attr("class",S.cache.className):T.removeAttr("class"),S.cache.style?(S.verbose("Restoring original style attribute",S.cache.style),T.attr("style",S.cache.style)):(S.verbose("Clearing style attribute"),T.removeAttr("style")),void S.verbose("Restoring original attributes",S.cache))}},add:{failSafe:function(){var n=S.get.duration();S.timer=setTimeout(function(){T.trigger(h)},n+f.failSafeDelay),S.verbose("Adding fail safe timer",S.timer)}},remove:{animating:function(){T.removeClass(v.animating)},animation:function(){T.css({"-webkit-animation":"","-moz-animation":"","-ms-animation":"","-o-animation":"",animation:""})},animationCallbacks:function(){S.remove.queueCallback(),S.remove.completeCallback()},queueCallback:function(){T.off(".queue"+A)},completeCallback:function(){T.off(".complete"+A)},display:function(){T.css("display","")},direction:function(){T.removeClass(v.inward).removeClass(v.outward)},failSafe:function(){S.verbose("Removing fail safe timer",S.timer),S.timer&&clearTimeout(S.timer)},hidden:function(){T.removeClass(v.hidden)},visible:function(){T.removeClass(v.visible)},looping:function(){S.debug("Transitions are no longer looping"),S.is.looping()&&(S.reset(),T.removeClass(v.looping))},transition:function(){T.removeClass(v.visible).removeClass(v.hidden)}},get:{settings:function(i,e,t){return"object"==typeof i?n.extend(!0,{},n.fn.transition.settings,i):"function"==typeof t?n.extend({},n.fn.transition.settings,{animation:i,onComplete:t,duration:e}):"string"==typeof e||"number"==typeof e?n.extend({},n.fn.transition.settings,{animation:i,duration:e}):"object"==typeof e?n.extend({},n.fn.transition.settings,e,{animation:i}):"function"==typeof e?n.extend({},n.fn.transition.settings,{animation:i,onComplete:e}):n.extend({},n.fn.transition.settings,{animation:i})},direction:function(i){return i=i||f.animation,"string"==typeof i&&(i=i.split(" "),n.each(i,function(n,i){return i===v.inward?v.inward:i===v.outward?v.outward:void 0})),S.can.transition()?T.is(":visible")&&!S.is.hidden()?v.outward:v.inward:"static"},duration:function(n){return n=n||f.duration,n===!1&&(n=T.css("animation-duration")||0),"string"==typeof n?n.indexOf("ms")>-1?parseFloat(n):1e3*parseFloat(n):n},displayType:function(){return f.displayType?f.displayType:(T.data(b.displayType)===t&&S.can.transition(!0),T.data(b.displayType))},style:function(){var n=T.attr("style")||"";return n.replace(/display.*?;/,"")},transitionExists:function(i){return n.fn.transition.exists[i]},animationName:function(){var n,i=e.createElement("div"),a={animation:"animationName",OAnimation:"oAnimationName",MozAnimation:"mozAnimationName",WebkitAnimation:"webkitAnimationName"};for(n in a)if(i.style[n]!==t)return a[n];return!1},animationStartEvent:function(){var n,i=e.createElement("div"),a={animation:"animationstart",OAnimation:"oAnimationStart",MozAnimation:"mozAnimationStart",WebkitAnimation:"webkitAnimationStart"};for(n in a)if(i.style[n]!==t)return a[n];return!1},animationEndEvent:function(){var n,i=e.createElement("div"),a={animation:"animationend",OAnimation:"oAnimationEnd",MozAnimation:"mozAnimationEnd",WebkitAnimation:"webkitAnimationEnd"};for(n in a)if(i.style[n]!==t)return a[n];return!1}},can:{transition:function(i){var e,a,o,r,s,l=T.attr("class"),u=T.prop("tagName"),m=f.animation,c=S.get.transitionExists(m);if(c===t||i){if(S.verbose("Determining whether animation exists"),e=n("<"+u+" />").addClass(l).insertAfter(T),a=e.addClass(m).removeClass(v.inward).removeClass(v.outward).addClass(v.animating).addClass(v.transition).css(w),o=e.addClass(v.inward).css(w),s=e.attr("class",l).removeAttr("style").removeClass(v.hidden).removeClass(v.visible).show().css("display"),S.verbose("Determining final display state",s),S.save.displayType(s),e.remove(),a!=o)S.debug("Direction exists for animation",m),r=!0;else{if("none"==a||!a)return void S.debug("No animation defined in css",m);S.debug("Static animation found",m,s),r=!1}S.save.transitionExists(m,r)}return c!==t?c:r},animate:function(){return S.can.transition()!==t}},is:{animating:function(){return T.hasClass(v.animating)},inward:function(){return T.hasClass(v.inward)},outward:function(){return T.hasClass(v.outward)},looping:function(){return T.hasClass(v.looping)},occurring:function(n){return n=n||f.animation,n="."+n.replace(" ","."),T.filter(n).length>0},visible:function(){return T.is(":visible")},hidden:function(){return"hidden"===T.css("visibility")},supported:function(){return w!==!1&&h!==!1}},hide:function(){S.verbose("Hiding element"),S.is.animating()&&S.reset(),S.remove.display(),S.remove.visible(),S.set.hidden(),S.repaint()},show:function(n){S.verbose("Showing element",n),S.remove.hidden(),S.set.visible(),S.set.display(),S.repaint()},toggle:function(){S.is.visible()?S.hide():S.show()},stop:function(){S.debug("Stopping current animation"),T.trigger(h)},stopAll:function(){S.debug("Stopping all animation"),S.remove.queueCallback(),T.trigger(h)},clear:{queue:function(){S.debug("Clearing animation queue"),S.remove.queueCallback()}},enable:function(){S.verbose("Starting animation"),T.removeClass(v.disabled)},disable:function(){S.debug("Stopping animation"),T.addClass(v.disabled)},setting:function(i,e){if(S.debug("Changing setting",i,e),n.isPlainObject(i))n.extend(!0,f,i);else{if(e===t)return f[i];f[i]=e}},internal:function(i,e){if(n.isPlainObject(i))n.extend(!0,S,i);else{if(e===t)return S[i];S[i]=e}},debug:function(){f.debug&&(f.performance?S.performance.log(arguments):(S.debug=Function.prototype.bind.call(console.info,console,f.name+":"),S.debug.apply(console,arguments)))},verbose:function(){f.verbose&&f.debug&&(f.performance?S.performance.log(arguments):(S.verbose=Function.prototype.bind.call(console.info,console,f.name+":"),S.verbose.apply(console,arguments)))},error:function(){S.error=Function.prototype.bind.call(console.error,console,f.name+":"),S.error.apply(console,arguments)},performance:{log:function(n){var i,e,t;f.performance&&(i=(new Date).getTime(),t=s||i,e=i-t,s=i,l.push({Name:n[0],Arguments:[].slice.call(n,1)||"",Element:x,"Execution Time":e})),clearTimeout(S.performance.timer),S.performance.timer=setTimeout(S.performance.display,100)},display:function(){var i=f.name+":",e=0;s=!1,clearTimeout(S.performance.timer),n.each(l,function(n,i){e+=i["Execution Time"]}),i+=" "+e+"ms",r&&(i+=" '"+r+"'"),o.length>1&&(i+=" ("+o.length+")"),(console.group!==t||console.table!==t)&&l.length>0&&(console.table||n.each(l,function(){}),console.groupEnd()),l=[]}},invoke:function(i,e,o){var r,s,l,u=p;return e=e||c,o=x||o,"string"==typeof i&&u!==t&&(i=i.split(/[\. ]/),r=i.length-1,n.each(i,function(e,a){var o=e!=r?a+i[e+1].charAt(0).toUpperCase()+i[e+1].slice(1):i;if(n.isPlainObject(u[o])&&e!=r)u=u[o];else{if(u[o]!==t)return s=u[o],!1;if(!n.isPlainObject(u[a])||e==r)return u[a]!==t?(s=u[a],!1):!1;u=u[a]}})),n.isFunction(s)?l=s.apply(o,e):s!==t&&(l=s),n.isArray(a)?a.push(l):a!==t?a=[a,l]:l!==t&&(a=l),s!==t?s:!1}},S.initialize()}),a!==t?a:this},n.fn.transition.exists={},n.fn.transition.settings={name:"Transition",debug:!1,verbose:!0,performance:!0,namespace:"transition",interval:0,reverse:"auto",onStart:function(){},onComplete:function(){},onShow:function(){},onHide:function(){},useFailSafe:!0,failSafeDelay:100,allowRepeats:!1,displayType:!1,animation:"fade",duration:!1,queue:!0,metadata:{displayType:"display"},className:{animating:"animating",disabled:"disabled",hidden:"hidden",inward:"in",loading:"loading",looping:"looping",outward:"out",transition:"transition",visible:"visible"},error:{noAnimation:"There is no css animation matching the one you specified.",repeated:"That animation is already occurring, cancelling repeated animation",method:"The method you called is not defined",support:"This browser does not support CSS animations"}}}(jQuery,window,document);
+/*!
+ * # Semantic UI 1.11.6 - Transition
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2014 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+;(function ( $, window, document, undefined ) {
+
+"use strict";
+
+$.fn.transition = function() {
+  var
+    $allModules     = $(this),
+    moduleSelector  = $allModules.selector || '',
+
+    time            = new Date().getTime(),
+    performance     = [],
+
+    moduleArguments = arguments,
+    query           = moduleArguments[0],
+    queryArguments  = [].slice.call(arguments, 1),
+    methodInvoked   = (typeof query === 'string'),
+
+    requestAnimationFrame = window.requestAnimationFrame
+      || window.mozRequestAnimationFrame
+      || window.webkitRequestAnimationFrame
+      || window.msRequestAnimationFrame
+      || function(callback) { setTimeout(callback, 0); },
+
+    returnedValue
+  ;
+  $allModules
+    .each(function(index) {
+      var
+        $module  = $(this),
+        element  = this,
+
+        // set at run time
+        settings,
+        instance,
+
+        error,
+        className,
+        metadata,
+        animationStart,
+        animationEnd,
+        animationName,
+
+        namespace,
+        moduleNamespace,
+        eventNamespace,
+        module
+      ;
+
+      module = {
+
+        initialize: function() {
+
+          // get full settings
+          settings        = module.get.settings.apply(element, moduleArguments);
+
+          // shorthand
+          className       = settings.className;
+          error           = settings.error;
+          metadata        = settings.metadata;
+
+          // define namespace
+          eventNamespace  = '.' + settings.namespace;
+          moduleNamespace = 'module-' + settings.namespace;
+          instance        = $module.data(moduleNamespace) || module;
+
+          // get vendor specific events
+          animationEnd    = module.get.animationEndEvent();
+          animationName   = module.get.animationName();
+          animationStart  = module.get.animationStartEvent();
+
+          if(methodInvoked) {
+            methodInvoked = module.invoke(query);
+          }
+
+          // method not invoked, lets run an animation
+          if(methodInvoked === false) {
+            module.verbose('Converted arguments into settings object', settings);
+            if(settings.interval) {
+              module.delay(settings.animate);
+            }
+            else  {
+              module.animate();
+            }
+            module.instantiate();
+          }
+        },
+
+        instantiate: function() {
+          module.verbose('Storing instance of module', module);
+          instance = module;
+          $module
+            .data(moduleNamespace, instance)
+          ;
+        },
+
+        destroy: function() {
+          module.verbose('Destroying previous module for', element);
+          $module
+            .removeData(moduleNamespace)
+          ;
+        },
+
+        refresh: function() {
+          module.verbose('Refreshing display type on next animation');
+          delete module.displayType;
+        },
+
+        forceRepaint: function() {
+          module.verbose('Forcing element repaint');
+          var
+            $parentElement = $module.parent(),
+            $nextElement = $module.next()
+          ;
+          if($nextElement.length === 0) {
+            $module.detach().appendTo($parentElement);
+          }
+          else {
+            $module.detach().insertBefore($nextElement);
+          }
+        },
+
+        repaint: function() {
+          module.verbose('Repainting element');
+          var
+            fakeAssignment = element.offsetWidth
+          ;
+        },
+
+        delay: function(interval) {
+          var
+            isReverse = (settings.reverse === true),
+            shouldReverse = (settings.reverse == 'auto' && module.get.direction() == className.outward),
+            delay
+          ;
+          interval = (typeof interval !== undefined)
+            ? interval
+            : settings.interval
+          ;
+          delay = (isReverse || shouldReverse)
+            ? ($allModules.length - index) * settings.interval
+            : index * settings.interval
+          ;
+          module.debug('Delaying animation by', delay);
+          setTimeout(module.animate, delay);
+        },
+
+        animate: function(overrideSettings) {
+          settings = overrideSettings || settings;
+          if(!module.is.supported()) {
+            module.error(error.support);
+            return false;
+          }
+          module.debug('Preparing animation', settings.animation);
+          if(module.is.animating()) {
+            if(settings.queue) {
+              if(!settings.allowRepeats && module.has.direction() && module.is.occurring() && module.queuing !== true) {
+                module.debug('Animation is currently occurring, preventing queueing same animation', settings.animation);
+              }
+              else {
+                module.queue(settings.animation);
+              }
+              return false;
+            }
+            else if(!settings.allowRepeats && module.is.occurring()) {
+              module.debug('Animation is already occurring, will not execute repeated animation', settings.animation);
+              return false;
+            }
+            else {
+              module.debug('New animation started, completing previous early', settings.animation);
+              module.complete();
+            }
+          }
+          if( module.can.animate() ) {
+            module.set.animating(settings.animation);
+          }
+          else {
+            module.error(error.noAnimation, settings.animation, element);
+          }
+        },
+
+        reset: function() {
+          module.debug('Resetting animation to beginning conditions');
+          module.remove.animationCallbacks();
+          module.restore.conditions();
+          module.remove.animating();
+        },
+
+        queue: function(animation) {
+          module.debug('Queueing animation of', animation);
+          module.queuing = true;
+          $module
+            .one(animationEnd + '.queue' + eventNamespace, function() {
+              module.queuing = false;
+              module.repaint();
+              module.animate.apply(this, settings);
+            })
+          ;
+        },
+
+        complete: function (event) {
+          module.debug('Animation complete', settings.animation);
+          module.remove.completeCallback();
+          module.remove.failSafe();
+          if(!module.is.looping()) {
+            if( module.is.outward() ) {
+              module.verbose('Animation is outward, hiding element');
+              module.restore.conditions();
+              module.hide();
+              settings.onHide.call(this);
+            }
+            else if( module.is.inward() ) {
+              module.verbose('Animation is outward, showing element');
+              module.restore.conditions();
+              module.show();
+              settings.onShow.call(this);
+            }
+            else {
+              module.restore.conditions();
+            }
+            module.remove.animation();
+            module.remove.animating();
+          }
+          settings.onComplete.call(this);
+        },
+
+        has: {
+          direction: function(animation) {
+            var
+              hasDirection = false
+            ;
+            animation = animation || settings.animation;
+            if(typeof animation === 'string') {
+              animation = animation.split(' ');
+              $.each(animation, function(index, word){
+                if(word === className.inward || word === className.outward) {
+                  hasDirection = true;
+                }
+              });
+            }
+            return hasDirection;
+          },
+          inlineDisplay: function() {
+            var
+              style = $module.attr('style') || ''
+            ;
+            return $.isArray(style.match(/display.*?;/, ''));
+          }
+        },
+
+        set: {
+          animating: function(animation) {
+            animation = animation || settings.animation;
+            if(!module.is.animating()) {
+              module.save.conditions();
+            }
+            module.remove.direction();
+            module.remove.completeCallback();
+            if(module.can.transition() && !module.has.direction()) {
+              module.set.direction();
+            }
+            module.remove.hidden();
+            module.set.display();
+            $module
+              .addClass(className.animating + ' ' + className.transition + ' ' + animation)
+              .addClass(animation)
+              .one(animationEnd + '.complete' + eventNamespace, module.complete)
+            ;
+            if(settings.useFailSafe) {
+              module.add.failSafe();
+            }
+            module.set.duration(settings.duration);
+            settings.onStart.call(this);
+            module.debug('Starting tween', animation, $module.attr('class'));
+          },
+          duration: function(animationName, duration) {
+            duration = duration || settings.duration;
+            duration = (typeof duration == 'number')
+              ? duration + 'ms'
+              : duration
+            ;
+            if(duration || duration === 0) {
+              module.verbose('Setting animation duration', duration);
+              $module
+                .css({
+                  '-webkit-animation-duration': duration,
+                  '-moz-animation-duration': duration,
+                  '-ms-animation-duration': duration,
+                  '-o-animation-duration': duration,
+                  'animation-duration':  duration
+                })
+              ;
+            }
+          },
+          display: function() {
+            var
+              style              = module.get.style(),
+              displayType        = module.get.displayType(),
+              overrideStyle      = style + 'display: ' + displayType + ' !important;'
+            ;
+            $module.css('display', '');
+            module.refresh();
+            if( $module.css('display') !== displayType ) {
+              module.verbose('Setting inline visibility to', displayType);
+              $module
+                .attr('style', overrideStyle)
+              ;
+            }
+          },
+          direction: function() {
+            if($module.is(':visible') && !module.is.hidden()) {
+              module.debug('Automatically determining the direction of animation', 'Outward');
+              $module
+                .removeClass(className.inward)
+                .addClass(className.outward)
+              ;
+            }
+            else {
+              module.debug('Automatically determining the direction of animation', 'Inward');
+              $module
+                .removeClass(className.outward)
+                .addClass(className.inward)
+              ;
+            }
+          },
+          looping: function() {
+            module.debug('Transition set to loop');
+            $module
+              .addClass(className.looping)
+            ;
+          },
+          hidden: function() {
+            if(!module.is.hidden()) {
+              $module
+                .addClass(className.transition)
+                .addClass(className.hidden)
+              ;
+            }
+            if($module.css('display') !== 'none') {
+              module.verbose('Overriding default display to hide element');
+              $module
+                .css('display', 'none')
+              ;
+            }
+          },
+          visible: function() {
+            $module
+              .addClass(className.transition)
+              .addClass(className.visible)
+            ;
+          }
+        },
+
+        save: {
+          displayType: function(displayType) {
+            $module.data(metadata.displayType, displayType);
+          },
+          transitionExists: function(animation, exists) {
+            $.fn.transition.exists[animation] = exists;
+            module.verbose('Saving existence of transition', animation, exists);
+          },
+          conditions: function() {
+            var
+              clasName = $module.attr('class') || false,
+              style    = $module.attr('style') || ''
+            ;
+            $module.removeClass(settings.animation);
+            module.remove.direction();
+            module.cache = {
+              className : $module.attr('class'),
+              style     : module.get.style()
+            };
+            module.verbose('Saving original attributes', module.cache);
+          }
+        },
+
+        restore: {
+          conditions: function() {
+            if(module.cache === undefined) {
+              return false;
+            }
+            if(module.cache.className) {
+              $module.attr('class', module.cache.className);
+            }
+            else {
+              $module.removeAttr('class');
+            }
+            if(module.cache.style) {
+              module.verbose('Restoring original style attribute', module.cache.style);
+              $module.attr('style', module.cache.style);
+            }
+            else {
+              module.verbose('Clearing style attribute');
+              $module.removeAttr('style');
+            }
+            module.verbose('Restoring original attributes', module.cache);
+          }
+        },
+
+        add: {
+          failSafe: function() {
+            var
+              duration = module.get.duration()
+            ;
+            module.timer = setTimeout(function() {
+              $module.trigger(animationEnd);
+            }, duration + settings.failSafeDelay);
+            module.verbose('Adding fail safe timer', module.timer);
+          }
+        },
+
+        remove: {
+          animating: function() {
+            $module.removeClass(className.animating);
+          },
+          animation: function() {
+            $module
+              .css({
+                '-webkit-animation' : '',
+                '-moz-animation'    : '',
+                '-ms-animation'     : '',
+                '-o-animation'      : '',
+                'animation'         : ''
+              })
+            ;
+          },
+          animationCallbacks: function() {
+            module.remove.queueCallback();
+            module.remove.completeCallback();
+          },
+          queueCallback: function() {
+            $module.off('.queue' + eventNamespace)
+          },
+          completeCallback: function() {
+            $module.off('.complete' + eventNamespace);
+          },
+          display: function() {
+            $module.css('display', '');
+          },
+          direction: function() {
+            $module
+              .removeClass(className.inward)
+              .removeClass(className.outward)
+            ;
+          },
+          failSafe: function() {
+            module.verbose('Removing fail safe timer', module.timer);
+            if(module.timer) {
+              clearTimeout(module.timer);
+            }
+          },
+          hidden: function() {
+            $module.removeClass(className.hidden);
+          },
+          visible: function() {
+            $module.removeClass(className.visible);
+          },
+          looping: function() {
+            module.debug('Transitions are no longer looping');
+            if( module.is.looping() ) {
+              module.reset();
+              $module
+                .removeClass(className.looping)
+              ;
+            }
+          },
+          transition: function() {
+            $module
+              .removeClass(className.visible)
+              .removeClass(className.hidden)
+            ;
+          }
+        },
+        get: {
+          settings: function(animation, duration, onComplete) {
+            // single settings object
+            if(typeof animation == 'object') {
+              return $.extend(true, {}, $.fn.transition.settings, animation);
+            }
+            // all arguments provided
+            else if(typeof onComplete == 'function') {
+              return $.extend({}, $.fn.transition.settings, {
+                animation  : animation,
+                onComplete : onComplete,
+                duration   : duration
+              });
+            }
+            // only duration provided
+            else if(typeof duration == 'string' || typeof duration == 'number') {
+              return $.extend({}, $.fn.transition.settings, {
+                animation : animation,
+                duration  : duration
+              });
+            }
+            // duration is actually settings object
+            else if(typeof duration == 'object') {
+              return $.extend({}, $.fn.transition.settings, duration, {
+                animation : animation
+              });
+            }
+            // duration is actually callback
+            else if(typeof duration == 'function') {
+              return $.extend({}, $.fn.transition.settings, {
+                animation  : animation,
+                onComplete : duration
+              });
+            }
+            // only animation provided
+            else {
+              return $.extend({}, $.fn.transition.settings, {
+                animation : animation
+              });
+            }
+            return $.fn.transition.settings;
+          },
+          direction: function(animation) {
+            // quickest manually specified direction
+            animation = animation || settings.animation;
+            if(typeof animation === 'string') {
+              animation = animation.split(' ');
+              $.each(animation, function(index, word){
+                if(word === className.inward) {
+                  return className.inward;
+                }
+                else if(word === className.outward) {
+                  return className.outward;
+                }
+              });
+            }
+            // slower backup
+            if( !module.can.transition() ) {
+              return 'static';
+            }
+            if($module.is(':visible') && !module.is.hidden()) {
+              return className.outward;
+            }
+            else {
+              return className.inward;
+            }
+          },
+          duration: function(duration) {
+            duration = duration || settings.duration;
+            if(duration === false) {
+              duration = $module.css('animation-duration') || 0;
+            }
+            return (typeof duration === 'string')
+              ? (duration.indexOf('ms') > -1)
+                ? parseFloat(duration)
+                : parseFloat(duration) * 1000
+              : duration
+            ;
+          },
+          displayType: function() {
+            if(settings.displayType) {
+              return settings.displayType;
+            }
+            if($module.data(metadata.displayType) === undefined) {
+              // create fake element to determine display state
+              module.can.transition(true);
+            }
+            return $module.data(metadata.displayType);
+          },
+          style: function() {
+            var
+              style = $module.attr('style') || ''
+            ;
+            return style.replace(/display.*?;/, '');
+          },
+          transitionExists: function(animation) {
+            return $.fn.transition.exists[animation];
+          },
+          animationName: function() {
+            var
+              element     = document.createElement('div'),
+              animations  = {
+                'animation'       :'animationName',
+                'OAnimation'      :'oAnimationName',
+                'MozAnimation'    :'mozAnimationName',
+                'WebkitAnimation' :'webkitAnimationName'
+              },
+              animation
+            ;
+            for(animation in animations){
+              if( element.style[animation] !== undefined ){
+                return animations[animation];
+              }
+            }
+            return false;
+          },
+          animationStartEvent: function() {
+            var
+              element     = document.createElement('div'),
+              animations  = {
+                'animation'       :'animationstart',
+                'OAnimation'      :'oAnimationStart',
+                'MozAnimation'    :'mozAnimationStart',
+                'WebkitAnimation' :'webkitAnimationStart'
+              },
+              animation
+            ;
+            for(animation in animations){
+              if( element.style[animation] !== undefined ){
+                return animations[animation];
+              }
+            }
+            return false;
+          },
+          animationEndEvent: function() {
+            var
+              element     = document.createElement('div'),
+              animations  = {
+                'animation'       :'animationend',
+                'OAnimation'      :'oAnimationEnd',
+                'MozAnimation'    :'mozAnimationEnd',
+                'WebkitAnimation' :'webkitAnimationEnd'
+              },
+              animation
+            ;
+            for(animation in animations){
+              if( element.style[animation] !== undefined ){
+                return animations[animation];
+              }
+            }
+            return false;
+          }
+
+        },
+
+        can: {
+          transition: function(forced) {
+            var
+              elementClass      = $module.attr('class'),
+              tagName           = $module.prop('tagName'),
+              animation         = settings.animation,
+              transitionExists  = module.get.transitionExists(animation),
+              $clone,
+              currentAnimation,
+              inAnimation,
+              directionExists,
+              displayType
+            ;
+            if( transitionExists === undefined || forced) {
+              module.verbose('Determining whether animation exists');
+              $clone = $('<' + tagName + ' />').addClass( elementClass ).insertAfter($module);
+              currentAnimation = $clone
+                .addClass(animation)
+                .removeClass(className.inward)
+                .removeClass(className.outward)
+                .addClass(className.animating)
+                .addClass(className.transition)
+                .css(animationName)
+              ;
+              inAnimation = $clone
+                .addClass(className.inward)
+                .css(animationName)
+              ;
+              displayType = $clone
+                .attr('class', elementClass)
+                .removeAttr('style')
+                .removeClass(className.hidden)
+                .removeClass(className.visible)
+                .show()
+                .css('display')
+              ;
+              module.verbose('Determining final display state', displayType);
+              module.save.displayType(displayType);
+
+              $clone.remove();
+              if(currentAnimation != inAnimation) {
+                module.debug('Direction exists for animation', animation);
+                directionExists = true;
+              }
+              else if(currentAnimation == 'none' || !currentAnimation) {
+                module.debug('No animation defined in css', animation);
+                return;
+              }
+              else {
+                module.debug('Static animation found', animation, displayType);
+                directionExists = false;
+              }
+              module.save.transitionExists(animation, directionExists);
+            }
+            return (transitionExists !== undefined)
+              ? transitionExists
+              : directionExists
+            ;
+          },
+          animate: function() {
+            // can transition does not return a value if animation does not exist
+            return (module.can.transition() !== undefined);
+          }
+        },
+
+        is: {
+          animating: function() {
+            return $module.hasClass(className.animating);
+          },
+          inward: function() {
+            return $module.hasClass(className.inward);
+          },
+          outward: function() {
+            return $module.hasClass(className.outward);
+          },
+          looping: function() {
+            return $module.hasClass(className.looping);
+          },
+          occurring: function(animation) {
+            animation = animation || settings.animation;
+            animation = '.' + animation.replace(' ', '.');
+            return ( $module.filter(animation).length > 0 );
+          },
+          visible: function() {
+            return $module.is(':visible');
+          },
+          hidden: function() {
+            return $module.css('visibility') === 'hidden';
+          },
+          supported: function() {
+            return(animationName !== false && animationEnd !== false);
+          }
+        },
+
+        hide: function() {
+          module.verbose('Hiding element');
+          if( module.is.animating() ) {
+            module.reset();
+          }
+          module.remove.display();
+          module.remove.visible();
+          module.set.hidden();
+          module.repaint();
+        },
+
+        show: function(display) {
+          module.verbose('Showing element', display);
+          module.remove.hidden();
+          module.set.visible();
+          module.set.display();
+          module.repaint();
+        },
+
+        toggle: function() {
+          if( module.is.visible() ) {
+            module.hide();
+          }
+          else {
+            module.show();
+          }
+        },
+
+        stop: function() {
+          module.debug('Stopping current animation');
+          $module.trigger(animationEnd);
+        },
+
+        stopAll: function() {
+          module.debug('Stopping all animation');
+          module.remove.queueCallback();
+          $module.trigger(animationEnd);
+        },
+
+        clear: {
+          queue: function() {
+            module.debug('Clearing animation queue')
+            module.remove.queueCallback();
+          }
+        },
+
+        enable: function() {
+          module.verbose('Starting animation');
+          $module.removeClass(className.disabled);
+        },
+
+        disable: function() {
+          module.debug('Stopping animation');
+          $module.addClass(className.disabled);
+        },
+
+        setting: function(name, value) {
+          module.debug('Changing setting', name, value);
+          if( $.isPlainObject(name) ) {
+            $.extend(true, settings, name);
+          }
+          else if(value !== undefined) {
+            settings[name] = value;
+          }
+          else {
+            return settings[name];
+          }
+        },
+        internal: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, module, name);
+          }
+          else if(value !== undefined) {
+            module[name] = value;
+          }
+          else {
+            return module[name];
+          }
+        },
+        debug: function() {
+          if(settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.debug.apply(console, arguments);
+            }
+          }
+        },
+        verbose: function() {
+          if(settings.verbose && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.verbose.apply(console, arguments);
+            }
+          }
+        },
+        error: function() {
+          module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+          module.error.apply(console, arguments);
+        },
+        performance: {
+          log: function(message) {
+            var
+              currentTime,
+              executionTime,
+              previousTime
+            ;
+            if(settings.performance) {
+              currentTime   = new Date().getTime();
+              previousTime  = time || currentTime;
+              executionTime = currentTime - previousTime;
+              time          = currentTime;
+              performance.push({
+                'Name'           : message[0],
+                'Arguments'      : [].slice.call(message, 1) || '',
+                'Element'        : element,
+                'Execution Time' : executionTime
+              });
+            }
+            clearTimeout(module.performance.timer);
+            module.performance.timer = setTimeout(module.performance.display, 100);
+          },
+          display: function() {
+            var
+              title = settings.name + ':',
+              totalTime = 0
+            ;
+            time = false;
+            clearTimeout(module.performance.timer);
+            $.each(performance, function(index, data) {
+              totalTime += data['Execution Time'];
+            });
+            title += ' ' + totalTime + 'ms';
+            if(moduleSelector) {
+              title += ' \'' + moduleSelector + '\'';
+            }
+            if($allModules.length > 1) {
+              title += ' ' + '(' + $allModules.length + ')';
+            }
+            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
+              console.groupCollapsed(title);
+              if(console.table) {
+                console.table(performance);
+              }
+              else {
+                $.each(performance, function(index, data) {
+                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
+                });
+              }
+              console.groupEnd();
+            }
+            performance = [];
+          }
+        },
+        // modified for transition to return invoke success
+        invoke: function(query, passedArguments, context) {
+          var
+            object = instance,
+            maxDepth,
+            found,
+            response
+          ;
+          passedArguments = passedArguments || queryArguments;
+          context         = element         || context;
+          if(typeof query == 'string' && object !== undefined) {
+            query    = query.split(/[\. ]/);
+            maxDepth = query.length - 1;
+            $.each(query, function(depth, value) {
+              var camelCaseValue = (depth != maxDepth)
+                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
+                : query
+              ;
+              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
+                object = object[camelCaseValue];
+              }
+              else if( object[camelCaseValue] !== undefined ) {
+                found = object[camelCaseValue];
+                return false;
+              }
+              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
+                object = object[value];
+              }
+              else if( object[value] !== undefined ) {
+                found = object[value];
+                return false;
+              }
+              else {
+                return false;
+              }
+            });
+          }
+          if ( $.isFunction( found ) ) {
+            response = found.apply(context, passedArguments);
+          }
+          else if(found !== undefined) {
+            response = found;
+          }
+
+          if($.isArray(returnedValue)) {
+            returnedValue.push(response);
+          }
+          else if(returnedValue !== undefined) {
+            returnedValue = [returnedValue, response];
+          }
+          else if(response !== undefined) {
+            returnedValue = response;
+          }
+          return (found !== undefined)
+            ? found
+            : false
+          ;
+        }
+      };
+      module.initialize();
+    })
+  ;
+  return (returnedValue !== undefined)
+    ? returnedValue
+    : this
+  ;
+};
+
+// Records if CSS transition is available
+$.fn.transition.exists = {};
+
+$.fn.transition.settings = {
+
+  // module info
+  name          : 'Transition',
+
+  // debug content outputted to console
+  debug         : false,
+
+  // verbose debug output
+  verbose       : true,
+
+  // performance data output
+  performance   : true,
+
+  // event namespace
+  namespace     : 'transition',
+
+  // delay between animations in group
+  interval      : 0,
+
+  // whether group animations should be reversed
+  reverse       : 'auto',
+
+  // animation callback event
+  onStart       : function() {},
+  onComplete    : function() {},
+  onShow        : function() {},
+  onHide        : function() {},
+
+  // whether timeout should be used to ensure callback fires in cases animationend does not
+  useFailSafe   : true,
+
+  // delay in ms for fail safe
+  failSafeDelay : 100,
+
+  // whether EXACT animation can occur twice in a row
+  allowRepeats  : false,
+
+  // Override final display type on visible
+  displayType   : false,
+
+  // animation duration
+  animation     : 'fade',
+  duration      : false,
+
+  // new animations will occur after previous ones
+  queue         : true,
+
+  metadata : {
+    displayType: 'display'
+  },
+
+  className   : {
+    animating  : 'animating',
+    disabled   : 'disabled',
+    hidden     : 'hidden',
+    inward     : 'in',
+    loading    : 'loading',
+    looping    : 'looping',
+    outward    : 'out',
+    transition : 'transition',
+    visible    : 'visible'
+  },
+
+  // possible errors
+  error: {
+    noAnimation : 'There is no css animation matching the one you specified.',
+    repeated    : 'That animation is already occurring, cancelling repeated animation',
+    method      : 'The method you called is not defined',
+    support     : 'This browser does not support CSS animations'
+  }
+
+};
+
+
+})( jQuery, window , document );

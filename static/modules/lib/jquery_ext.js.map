@@ -1,7 +1,7 @@
 {
   "version": 3,
   "file": "jquery_ext.js",
-  "sourceRoot": "../..",
+  "sourceRoot": "../../..",
   "sources": [
     "coffee/lib/jquery_ext.coffee"
   ],

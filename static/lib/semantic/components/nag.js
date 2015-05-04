@@ -1,1 +1,477 @@
-!function(e,o,n,t){"use strict";e.fn.nag=function(n){var i,a=e(this),r=a.selector||"",s=(new Date).getTime(),c=[],l=arguments[0],u="string"==typeof l,g=[].slice.call(arguments,1);return a.each(function(){{var a,d=e.isPlainObject(n)?e.extend(!0,{},e.fn.nag.settings,n):e.extend({},e.fn.nag.settings),m=(d.className,d.selector),f=d.error,p=d.namespace,h="."+p,b=p+"-module",v=e(this),y=v.find(m.close),k=e(d.context?d.context:"body"),w=this,x=v.data(b);o.requestAnimationFrame||o.mozRequestAnimationFrame||o.webkitRequestAnimationFrame||o.msRequestAnimationFrame||function(e){setTimeout(e,0)}}a={initialize:function(){a.verbose("Initializing element"),v.data(b,a),y.on("click"+h,a.dismiss),d.detachable&&v.parent()[0]!==k[0]&&v.detach().prependTo(k),d.displayTime>0&&setTimeout(a.hide,d.displayTime),a.show()},destroy:function(){a.verbose("Destroying instance"),v.removeData(b).off(h)},show:function(){a.should.show()&&!v.is(":visible")&&(a.debug("Showing nag",d.animation.show),"fade"==d.animation.show?v.fadeIn(d.duration,d.easing):v.slideDown(d.duration,d.easing))},hide:function(){a.debug("Showing nag",d.animation.hide),"fade"==d.animation.show?v.fadeIn(d.duration,d.easing):v.slideUp(d.duration,d.easing)},onHide:function(){a.debug("Removing nag",d.animation.hide),v.remove(),d.onHide&&d.onHide()},dismiss:function(e){d.storageMethod&&a.storage.set(d.key,d.value),a.hide(),e.stopImmediatePropagation(),e.preventDefault()},should:{show:function(){return d.persist?(a.debug("Persistent nag is set, can show nag"),!0):a.storage.get(d.key)!=d.value.toString()?(a.debug("Stored value is not set, can show nag",a.storage.get(d.key)),!0):(a.debug("Stored value is set, cannot show nag",a.storage.get(d.key)),!1)}},get:{storageOptions:function(){var e={};return d.expires&&(e.expires=d.expires),d.domain&&(e.domain=d.domain),d.path&&(e.path=d.path),e}},clear:function(){a.storage.remove(d.key)},storage:{set:function(n,i){var r=a.get.storageOptions();if("localstorage"==d.storageMethod&&o.localStorage!==t)o.localStorage.setItem(n,i),a.debug("Value stored using local storage",n,i);else{if(e.cookie===t)return void a.error(f.noCookieStorage);e.cookie(n,i,r),a.debug("Value stored using cookie",n,i,r)}},get:function(n){var i;return"localstorage"==d.storageMethod&&o.localStorage!==t?i=o.localStorage.getItem(n):e.cookie!==t?i=e.cookie(n):a.error(f.noCookieStorage),("undefined"==i||"null"==i||i===t||null===i)&&(i=t),i},remove:function(n){var i=a.get.storageOptions();"local"==d.storageMethod&&o.store!==t?o.localStorage.removeItem(n):e.cookie!==t?e.removeCookie(n,i):a.error(f.noStorage)}},setting:function(o,n){if(a.debug("Changing setting",o,n),e.isPlainObject(o))e.extend(!0,d,o);else{if(n===t)return d[o];d[o]=n}},internal:function(o,n){if(e.isPlainObject(o))e.extend(!0,a,o);else{if(n===t)return a[o];a[o]=n}},debug:function(){d.debug&&(d.performance?a.performance.log(arguments):(a.debug=Function.prototype.bind.call(console.info,console,d.name+":"),a.debug.apply(console,arguments)))},verbose:function(){d.verbose&&d.debug&&(d.performance?a.performance.log(arguments):(a.verbose=Function.prototype.bind.call(console.info,console,d.name+":"),a.verbose.apply(console,arguments)))},error:function(){a.error=Function.prototype.bind.call(console.error,console,d.name+":"),a.error.apply(console,arguments)},performance:{log:function(e){var o,n,t;d.performance&&(o=(new Date).getTime(),t=s||o,n=o-t,s=o,c.push({Name:e[0],Arguments:[].slice.call(e,1)||"",Element:w,"Execution Time":n})),clearTimeout(a.performance.timer),a.performance.timer=setTimeout(a.performance.display,100)},display:function(){var o=d.name+":",n=0;s=!1,clearTimeout(a.performance.timer),e.each(c,function(e,o){n+=o["Execution Time"]}),o+=" "+n+"ms",r&&(o+=" '"+r+"'"),(console.group!==t||console.table!==t)&&c.length>0&&(console.table||e.each(c,function(){}),console.groupEnd()),c=[]}},invoke:function(o,n,r){var s,c,l,u=x;return n=n||g,r=w||r,"string"==typeof o&&u!==t&&(o=o.split(/[\. ]/),s=o.length-1,e.each(o,function(n,i){var r=n!=s?i+o[n+1].charAt(0).toUpperCase()+o[n+1].slice(1):o;if(e.isPlainObject(u[r])&&n!=s)u=u[r];else{if(u[r]!==t)return c=u[r],!1;if(!e.isPlainObject(u[i])||n==s)return u[i]!==t?(c=u[i],!1):(a.error(f.method,o),!1);u=u[i]}})),e.isFunction(c)?l=c.apply(r,n):c!==t&&(l=c),e.isArray(i)?i.push(l):i!==t?i=[i,l]:l!==t&&(i=l),c}},u?(x===t&&a.initialize(),a.invoke(l)):(x!==t&&x.invoke("destroy"),a.initialize())}),i!==t?i:this},e.fn.nag.settings={name:"Nag",debug:!1,verbose:!0,performance:!0,namespace:"Nag",persist:!1,displayTime:0,animation:{show:"slide",hide:"slide"},context:!1,detachable:!1,expires:30,domain:!1,path:"/",storageMethod:"cookie",key:"nag",value:"dismiss",error:{noStorage:"Neither $.cookie or store is defined. A storage solution is required for storing state",method:"The method you called is not defined."},className:{bottom:"bottom",fixed:"fixed"},selector:{close:".close.icon"},speed:500,easing:"easeOutQuad",onHide:function(){}}}(jQuery,window,document);
+/*!
+ * # Semantic UI 1.11.6 - Nag
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2014 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+;(function ($, window, document, undefined) {
+
+"use strict";
+
+$.fn.nag = function(parameters) {
+  var
+    $allModules    = $(this),
+    moduleSelector = $allModules.selector || '',
+
+    time           = new Date().getTime(),
+    performance    = [],
+
+    query          = arguments[0],
+    methodInvoked  = (typeof query == 'string'),
+    queryArguments = [].slice.call(arguments, 1),
+    returnedValue
+  ;
+  $allModules
+    .each(function() {
+      var
+        settings          = ( $.isPlainObject(parameters) )
+          ? $.extend(true, {}, $.fn.nag.settings, parameters)
+          : $.extend({}, $.fn.nag.settings),
+
+        className       = settings.className,
+        selector        = settings.selector,
+        error           = settings.error,
+        namespace       = settings.namespace,
+
+        eventNamespace  = '.' + namespace,
+        moduleNamespace = namespace + '-module',
+
+        $module         = $(this),
+
+        $close          = $module.find(selector.close),
+        $context        = (settings.context)
+          ? $(settings.context)
+          : $('body'),
+
+        element         = this,
+        instance        = $module.data(moduleNamespace),
+
+        moduleOffset,
+        moduleHeight,
+
+        contextWidth,
+        contextHeight,
+        contextOffset,
+
+        yOffset,
+        yPosition,
+
+        timer,
+        module,
+
+        requestAnimationFrame = window.requestAnimationFrame
+          || window.mozRequestAnimationFrame
+          || window.webkitRequestAnimationFrame
+          || window.msRequestAnimationFrame
+          || function(callback) { setTimeout(callback, 0); }
+      ;
+      module = {
+
+        initialize: function() {
+          module.verbose('Initializing element');
+
+          $module
+            .data(moduleNamespace, module)
+          ;
+          $close
+            .on('click' + eventNamespace, module.dismiss)
+          ;
+
+          if(settings.detachable && $module.parent()[0] !== $context[0]) {
+            $module
+              .detach()
+              .prependTo($context)
+            ;
+          }
+
+          if(settings.displayTime > 0) {
+            setTimeout(module.hide, settings.displayTime);
+          }
+          module.show();
+        },
+
+        destroy: function() {
+          module.verbose('Destroying instance');
+          $module
+            .removeData(moduleNamespace)
+            .off(eventNamespace)
+          ;
+        },
+
+        show: function() {
+          if( module.should.show() && !$module.is(':visible') ) {
+            module.debug('Showing nag', settings.animation.show);
+            if(settings.animation.show == 'fade') {
+              $module
+                .fadeIn(settings.duration, settings.easing)
+              ;
+            }
+            else {
+              $module
+                .slideDown(settings.duration, settings.easing)
+              ;
+            }
+          }
+        },
+
+        hide: function() {
+          module.debug('Showing nag', settings.animation.hide);
+          if(settings.animation.show == 'fade') {
+            $module
+              .fadeIn(settings.duration, settings.easing)
+            ;
+          }
+          else {
+            $module
+              .slideUp(settings.duration, settings.easing)
+            ;
+          }
+        },
+
+        onHide: function() {
+          module.debug('Removing nag', settings.animation.hide);
+          $module.remove();
+          if (settings.onHide) {
+            settings.onHide();
+          }
+        },
+
+        dismiss: function(event) {
+          if(settings.storageMethod) {
+            module.storage.set(settings.key, settings.value);
+          }
+          module.hide();
+          event.stopImmediatePropagation();
+          event.preventDefault();
+        },
+
+        should: {
+          show: function() {
+            if(settings.persist) {
+              module.debug('Persistent nag is set, can show nag');
+              return true;
+            }
+            if( module.storage.get(settings.key) != settings.value.toString() ) {
+              module.debug('Stored value is not set, can show nag', module.storage.get(settings.key));
+              return true;
+            }
+            module.debug('Stored value is set, cannot show nag', module.storage.get(settings.key));
+            return false;
+          }
+        },
+
+        get: {
+          storageOptions: function() {
+            var
+              options = {}
+            ;
+            if(settings.expires) {
+              options.expires = settings.expires;
+            }
+            if(settings.domain) {
+              options.domain = settings.domain;
+            }
+            if(settings.path) {
+              options.path = settings.path;
+            }
+            return options;
+          }
+        },
+
+        clear: function() {
+          module.storage.remove(settings.key);
+        },
+
+        storage: {
+          set: function(key, value) {
+            var
+              options = module.get.storageOptions()
+            ;
+            if(settings.storageMethod == 'localstorage' && window.localStorage !== undefined) {
+              window.localStorage.setItem(key, value);
+              module.debug('Value stored using local storage', key, value);
+            }
+            else if($.cookie !== undefined) {
+              $.cookie(key, value, options);
+              module.debug('Value stored using cookie', key, value, options);
+            }
+            else {
+              module.error(error.noCookieStorage);
+              return;
+            }
+          },
+          get: function(key, value) {
+            var
+              storedValue
+            ;
+            if(settings.storageMethod == 'localstorage' && window.localStorage !== undefined) {
+              storedValue = window.localStorage.getItem(key);
+            }
+            // get by cookie
+            else if($.cookie !== undefined) {
+              storedValue = $.cookie(key);
+            }
+            else {
+              module.error(error.noCookieStorage);
+            }
+            if(storedValue == 'undefined' || storedValue == 'null' || storedValue === undefined || storedValue === null) {
+              storedValue = undefined;
+            }
+            return storedValue;
+          },
+          remove: function(key) {
+            var
+              options = module.get.storageOptions()
+            ;
+            if(settings.storageMethod == 'local' && window.store !== undefined) {
+              window.localStorage.removeItem(key);
+            }
+            // store by cookie
+            else if($.cookie !== undefined) {
+              $.removeCookie(key, options);
+            }
+            else {
+              module.error(error.noStorage);
+            }
+          }
+        },
+
+        setting: function(name, value) {
+          module.debug('Changing setting', name, value);
+          if( $.isPlainObject(name) ) {
+            $.extend(true, settings, name);
+          }
+          else if(value !== undefined) {
+            settings[name] = value;
+          }
+          else {
+            return settings[name];
+          }
+        },
+        internal: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, module, name);
+          }
+          else if(value !== undefined) {
+            module[name] = value;
+          }
+          else {
+            return module[name];
+          }
+        },
+        debug: function() {
+          if(settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.debug.apply(console, arguments);
+            }
+          }
+        },
+        verbose: function() {
+          if(settings.verbose && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.verbose.apply(console, arguments);
+            }
+          }
+        },
+        error: function() {
+          module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+          module.error.apply(console, arguments);
+        },
+        performance: {
+          log: function(message) {
+            var
+              currentTime,
+              executionTime,
+              previousTime
+            ;
+            if(settings.performance) {
+              currentTime   = new Date().getTime();
+              previousTime  = time || currentTime;
+              executionTime = currentTime - previousTime;
+              time          = currentTime;
+              performance.push({
+                'Name'           : message[0],
+                'Arguments'      : [].slice.call(message, 1) || '',
+                'Element'        : element,
+                'Execution Time' : executionTime
+              });
+            }
+            clearTimeout(module.performance.timer);
+            module.performance.timer = setTimeout(module.performance.display, 100);
+          },
+          display: function() {
+            var
+              title = settings.name + ':',
+              totalTime = 0
+            ;
+            time = false;
+            clearTimeout(module.performance.timer);
+            $.each(performance, function(index, data) {
+              totalTime += data['Execution Time'];
+            });
+            title += ' ' + totalTime + 'ms';
+            if(moduleSelector) {
+              title += ' \'' + moduleSelector + '\'';
+            }
+            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
+              console.groupCollapsed(title);
+              if(console.table) {
+                console.table(performance);
+              }
+              else {
+                $.each(performance, function(index, data) {
+                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
+                });
+              }
+              console.groupEnd();
+            }
+            performance = [];
+          }
+        },
+        invoke: function(query, passedArguments, context) {
+          var
+            object = instance,
+            maxDepth,
+            found,
+            response
+          ;
+          passedArguments = passedArguments || queryArguments;
+          context         = element         || context;
+          if(typeof query == 'string' && object !== undefined) {
+            query    = query.split(/[\. ]/);
+            maxDepth = query.length - 1;
+            $.each(query, function(depth, value) {
+              var camelCaseValue = (depth != maxDepth)
+                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
+                : query
+              ;
+              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
+                object = object[camelCaseValue];
+              }
+              else if( object[camelCaseValue] !== undefined ) {
+                found = object[camelCaseValue];
+                return false;
+              }
+              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
+                object = object[value];
+              }
+              else if( object[value] !== undefined ) {
+                found = object[value];
+                return false;
+              }
+              else {
+                module.error(error.method, query);
+                return false;
+              }
+            });
+          }
+          if ( $.isFunction( found ) ) {
+            response = found.apply(context, passedArguments);
+          }
+          else if(found !== undefined) {
+            response = found;
+          }
+          if($.isArray(returnedValue)) {
+            returnedValue.push(response);
+          }
+          else if(returnedValue !== undefined) {
+            returnedValue = [returnedValue, response];
+          }
+          else if(response !== undefined) {
+            returnedValue = response;
+          }
+          return found;
+        }
+      };
+
+      if(methodInvoked) {
+        if(instance === undefined) {
+          module.initialize();
+        }
+        module.invoke(query);
+      }
+      else {
+        if(instance !== undefined) {
+          instance.invoke('destroy');
+        }
+        module.initialize();
+      }
+    })
+  ;
+
+  return (returnedValue !== undefined)
+    ? returnedValue
+    : this
+  ;
+};
+
+$.fn.nag.settings = {
+
+  name        : 'Nag',
+
+  debug       : false,
+  verbose     : true,
+  performance : true,
+
+  namespace   : 'Nag',
+
+  // allows cookie to be overriden
+  persist     : false,
+
+  // set to zero to require manually dismissal, otherwise hides on its own
+  displayTime : 0,
+
+  animation   : {
+    show : 'slide',
+    hide : 'slide'
+  },
+
+  context       : false,
+  detachable    : false,
+
+  expires       : 30,
+  domain        : false,
+  path          : '/',
+
+  // type of storage to use
+  storageMethod : 'cookie',
+
+  // value to store in dismissed localstorage/cookie
+  key           : 'nag',
+  value         : 'dismiss',
+
+  error: {
+    noStorage : 'Neither $.cookie or store is defined. A storage solution is required for storing state',
+    method    : 'The method you called is not defined.'
+  },
+
+  className     : {
+    bottom : 'bottom',
+    fixed  : 'fixed'
+  },
+
+  selector      : {
+    close : '.close.icon'
+  },
+
+  speed         : 500,
+  easing        : 'easeOutQuad',
+
+  onHide: function() {}
+
+};
+
+})( jQuery, window , document );

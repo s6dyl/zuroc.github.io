@@ -1,1 +1,1037 @@
-!function(e,t,o,n){"use strict";e.fn.visibility=function(i){var s,c=e(this),r=c.selector||"",a=(new Date).getTime(),l=[],u=arguments[0],d="string"==typeof u,m=[].slice.call(arguments,1);return c.each(function(){var c,b,g=e.isPlainObject(i)?e.extend(!0,{},e.fn.visibility.settings,i):e.extend({},e.fn.visibility.settings),p=g.className,v=g.namespace,f=g.error,h="."+v,P="module-"+v,V=e(t),C=e(this),y=e(g.context),R=C.find("img"),x=(C.selector||"",C.data(P)),k=t.requestAnimationFrame||t.mozRequestAnimationFrame||t.webkitRequestAnimationFrame||t.msRequestAnimationFrame||function(e){setTimeout(e,0)},T=this;b={initialize:function(){b.debug("Initializing",g),b.setup.cache(),b.save.position(),b.should.trackChanges()&&(b.bind.events(),"image"==g.type&&b.setup.image(),"fixed"==g.type&&b.setup.fixed()),g.initialCheck&&b.checkVisibility(),g.observeChanges&&b.observeChanges(),b.instantiate()},instantiate:function(){b.debug("Storing instance",b),C.data(P,b),x=b},destroy:function(){b.verbose("Destroying previous module"),C.off(h).removeData(P),V.off("resize"+h,b.event.refresh),y.off("scroll"+h,b.event.scroll)},observeChanges:function(){y[0];"MutationObserver"in t&&(c=new MutationObserver(function(){b.verbose("DOM tree modified, updating visibility calculations"),b.refresh()}),c.observe(T,{childList:!0,subtree:!0}),b.debug("Setting up mutation observer",c))},bind:{events:function(){b.verbose("Binding visibility events to scroll and resize"),V.on("resize"+h,b.event.refresh),y.on("scroll"+h,b.event.scroll),R.length>0&&b.bind.imageLoad()},imageLoad:function(){var t=R.length,n=t,i=0,s=[],c=[],r=o.createElement("img"),a=function(){i++,i>=t&&(b.debug("Images finished loading inside element, refreshing position"),b.refresh())};for(R.each(function(){s.push(e(this).attr("src"))});n--;)r=o.createElement("img"),r.onload=a,r.onerror=a,r.src=s[n],c.push(r)}},event:{refresh:function(){k(b.refresh)},scroll:function(){b.verbose("Scroll position changed"),g.throttle?(clearTimeout(b.timer),b.timer=setTimeout(function(){b.checkVisibility()},g.throttle)):k(function(){b.checkVisibility()})}},should:{trackChanges:function(){return d&&m.length>0?(b.debug("One time query, no need to bind events"),!1):(b.debug("Callbacks being attached"),!0)}},setup:{cache:function(){b.cache={occurred:{},screen:{},element:{}}},image:function(){var e=C.data("src");e&&(b.verbose("Lazy loading image",e),g.observeChanges=!1,b.topVisible(function(){b.debug("Image top visible",T),b.precache(e,function(){b.set.image(e),g.onTopVisible=!1})}))},fixed:function(){b.verbose("Setting up fixed on element pass"),g.once=!1,g.onTopPassed=function(){C.addClass(p.fixed).css({top:g.offset+"px"}),g.transition&&e.fn.transition!==n&&C.transition(g.transition,g.duration)},g.onTopPassedReverse=function(){C.removeClass(p.fixed).css({position:"",top:""})}}},set:{image:function(t){var o=b.cache.screen.bottom<b.cache.element.top;C.attr("src",t),o?(b.verbose("Image outside browser, no show animation"),C.show()):g.transition?e.fn.transition!==n?C.transition(g.transition,g.duration):C.fadeIn(g.duration):C.show()}},is:{visible:function(){return b.cache&&b.cache.element?b.cache.element.width>0:!1}},refresh:function(){b.debug("Refreshing constants (element width/height)"),b.reset(),b.save.position(),b.checkVisibility(),g.onRefresh.call(T)},reset:function(){b.verbose("Reseting all cached values"),e.isPlainObject(b.cache)&&(b.cache.screen={},b.cache.element={})},checkVisibility:function(){b.verbose("Checking visibility of element",b.cache.element),b.is.visible()&&(b.save.calculations(),b.passed(),b.passingReverse(),b.topVisibleReverse(),b.bottomVisibleReverse(),b.topPassedReverse(),b.bottomPassedReverse(),b.passing(),b.topVisible(),b.bottomVisible(),b.topPassed(),b.bottomPassed(),g.onUpdate&&g.onUpdate.call(T,b.get.elementCalculations()))},passed:function(t,o){var i=b.get.elementCalculations();if(t!==n&&o!==n)g.onPassed[t]=o;else{if(t!==n)return b.get.pixelsPassed(t)>i.pixelsPassed;i.passing&&e.each(g.onPassed,function(e,t){i.bottomVisible||i.pixelsPassed>b.get.pixelsPassed(e)?b.execute(t,e):g.once||b.remove.occurred(t)})}},passing:function(e){var t=b.get.elementCalculations(),o=e||g.onPassing,i="passing";return e&&(b.debug("Adding callback for passing",e),g.onPassing=e),t.passing?b.execute(o,i):g.once||b.remove.occurred(i),e!==n?t.passing:void 0},topVisible:function(e){var t=b.get.elementCalculations(),o=e||g.onTopVisible,i="topVisible";return e&&(b.debug("Adding callback for top visible",e),g.onTopVisible=e),t.topVisible?b.execute(o,i):g.once||b.remove.occurred(i),e===n?t.topVisible:void 0},bottomVisible:function(e){var t=b.get.elementCalculations(),o=e||g.onBottomVisible,i="bottomVisible";return e&&(b.debug("Adding callback for bottom visible",e),g.onBottomVisible=e),t.bottomVisible?b.execute(o,i):g.once||b.remove.occurred(i),e===n?t.bottomVisible:void 0},topPassed:function(e){var t=b.get.elementCalculations(),o=e||g.onTopPassed,i="topPassed";return e&&(b.debug("Adding callback for top passed",e),g.onTopPassed=e),t.topPassed?b.execute(o,i):g.once||b.remove.occurred(i),e===n?t.topPassed:void 0},bottomPassed:function(e){var t=b.get.elementCalculations(),o=e||g.onBottomPassed,i="bottomPassed";return e&&(b.debug("Adding callback for bottom passed",e),g.onBottomPassed=e),t.bottomPassed?b.execute(o,i):g.once||b.remove.occurred(i),e===n?t.bottomPassed:void 0},passingReverse:function(e){var t=b.get.elementCalculations(),o=e||g.onPassingReverse,i="passingReverse";return e&&(b.debug("Adding callback for passing reverse",e),g.onPassingReverse=e),t.passing?g.once||b.remove.occurred(i):b.get.occurred("passing")&&b.execute(o,i),e!==n?!t.passing:void 0},topVisibleReverse:function(e){var t=b.get.elementCalculations(),o=e||g.onTopVisibleReverse,i="topVisibleReverse";return e&&(b.debug("Adding callback for top visible reverse",e),g.onTopVisibleReverse=e),t.topVisible?g.once||b.remove.occurred(i):b.get.occurred("topVisible")&&b.execute(o,i),e===n?!t.topVisible:void 0},bottomVisibleReverse:function(e){var t=b.get.elementCalculations(),o=e||g.onBottomVisibleReverse,i="bottomVisibleReverse";return e&&(b.debug("Adding callback for bottom visible reverse",e),g.onBottomVisibleReverse=e),t.bottomVisible?g.once||b.remove.occurred(i):b.get.occurred("bottomVisible")&&b.execute(o,i),e===n?!t.bottomVisible:void 0},topPassedReverse:function(e){var t=b.get.elementCalculations(),o=e||g.onTopPassedReverse,i="topPassedReverse";return e&&(b.debug("Adding callback for top passed reverse",e),g.onTopPassedReverse=e),t.topPassed?g.once||b.remove.occurred(i):b.get.occurred("topPassed")&&b.execute(o,i),e===n?!t.onTopPassed:void 0},bottomPassedReverse:function(e){var t=b.get.elementCalculations(),o=e||g.onBottomPassedReverse,i="bottomPassedReverse";return e&&(b.debug("Adding callback for bottom passed reverse",e),g.onBottomPassedReverse=e),t.bottomPassed?g.once||b.remove.occurred(i):b.get.occurred("bottomPassed")&&b.execute(o,i),e===n?!t.bottomPassed:void 0},execute:function(e,t){var o=b.get.elementCalculations(),n=b.get.screenCalculations();e=e||!1,e&&(g.continuous?(b.debug("Callback being called continuously",t,o),e.call(T,o,n)):b.get.occurred(t)||(b.debug("Conditions met",t,o),e.call(T,o,n))),b.save.occurred(t)},remove:{occurred:function(e){e?b.cache.occurred[e]!==n&&b.cache.occurred[e]===!0&&(b.debug("Callback can now be called again",e),b.cache.occurred[e]=!1):b.cache.occurred={}}},save:{calculations:function(){b.verbose("Saving all calculations necessary to determine positioning"),b.save.scroll(),b.save.direction(),b.save.screenCalculations(),b.save.elementCalculations()},occurred:function(e){e&&(b.cache.occurred[e]===n||b.cache.occurred[e]!==!0)&&(b.verbose("Saving callback occurred",e),b.cache.occurred[e]=!0)},scroll:function(){b.cache.scroll=y.scrollTop()+g.offset},direction:function(){var e,t=b.get.scroll(),o=b.get.lastScroll();return e=t>o&&o?"down":o>t&&o?"up":"static",b.cache.direction=e,b.cache.direction},elementPosition:function(){var e=b.cache.element,t=b.get.screenSize();return b.verbose("Saving element position"),e.fits=e.height<t.height,e.offset=C.offset(),e.width=C.outerWidth(),e.height=C.outerHeight(),b.cache.element=e,e},elementCalculations:function(){var e=b.get.screenCalculations(),t=b.get.elementPosition();return g.includeMargin?(t.margin={},t.margin.top=parseInt(C.css("margin-top"),10),t.margin.bottom=parseInt(C.css("margin-bottom"),10),t.top=t.offset.top-t.margin.top,t.bottom=t.offset.top+t.height+t.margin.bottom):(t.top=t.offset.top,t.bottom=t.offset.top+t.height),t.topVisible=e.bottom>=t.top,t.topPassed=e.top>=t.top,t.bottomVisible=e.bottom>=t.bottom,t.bottomPassed=e.top>=t.bottom,t.pixelsPassed=0,t.percentagePassed=0,t.visible=t.topVisible||t.bottomVisible,t.passing=t.topPassed&&!t.bottomPassed,t.hidden=!t.topVisible&&!t.bottomVisible,t.passing&&(t.pixelsPassed=e.top-t.top,t.percentagePassed=(e.top-t.top)/t.height),b.cache.element=t,b.verbose("Updated element calculations",t),t},screenCalculations:function(){var e=b.get.scroll();return b.save.direction(),b.cache.screen.top=e,b.cache.screen.bottom=e+b.cache.screen.height,b.cache.screen},screenSize:function(){b.verbose("Saving window position"),b.cache.screen={height:y.height()}},position:function(){b.save.screenSize(),b.save.elementPosition()}},get:{pixelsPassed:function(e){var t=b.get.elementCalculations();return e.search("%")>-1?t.height*(parseInt(e,10)/100):parseInt(e,10)},occurred:function(e){return b.cache.occurred!==n?b.cache.occurred[e]||!1:!1},direction:function(){return b.cache.direction===n&&b.save.direction(),b.cache.direction},elementPosition:function(){return b.cache.element===n&&b.save.elementPosition(),b.cache.element},elementCalculations:function(){return b.cache.element===n&&b.save.elementCalculations(),b.cache.element},screenCalculations:function(){return b.cache.screen===n&&b.save.screenCalculations(),b.cache.screen},screenSize:function(){return b.cache.screen===n&&b.save.screenSize(),b.cache.screen},scroll:function(){return b.cache.scroll===n&&b.save.scroll(),b.cache.scroll},lastScroll:function(){return b.cache.screen===n?(b.debug("First scroll event, no last scroll could be found"),!1):b.cache.screen.top}},setting:function(t,o){if(e.isPlainObject(t))e.extend(!0,g,t);else{if(o===n)return g[t];g[t]=o}},internal:function(t,o){if(e.isPlainObject(t))e.extend(!0,b,t);else{if(o===n)return b[t];b[t]=o}},debug:function(){g.debug&&(g.performance?b.performance.log(arguments):(b.debug=Function.prototype.bind.call(console.info,console,g.name+":"),b.debug.apply(console,arguments)))},verbose:function(){g.verbose&&g.debug&&(g.performance?b.performance.log(arguments):(b.verbose=Function.prototype.bind.call(console.info,console,g.name+":"),b.verbose.apply(console,arguments)))},error:function(){b.error=Function.prototype.bind.call(console.error,console,g.name+":"),b.error.apply(console,arguments)},performance:{log:function(e){var t,o,n;g.performance&&(t=(new Date).getTime(),n=a||t,o=t-n,a=t,l.push({Name:e[0],Arguments:[].slice.call(e,1)||"",Element:T,"Execution Time":o})),clearTimeout(b.performance.timer),b.performance.timer=setTimeout(b.performance.display,100)},display:function(){var t=g.name+":",o=0;a=!1,clearTimeout(b.performance.timer),e.each(l,function(e,t){o+=t["Execution Time"]}),t+=" "+o+"ms",r&&(t+=" '"+r+"'"),(console.group!==n||console.table!==n)&&l.length>0&&(console.table||e.each(l,function(){}),console.groupEnd()),l=[]}},invoke:function(t,o,i){var c,r,a,l=x;return o=o||m,i=T||i,"string"==typeof t&&l!==n&&(t=t.split(/[\. ]/),c=t.length-1,e.each(t,function(o,i){var s=o!=c?i+t[o+1].charAt(0).toUpperCase()+t[o+1].slice(1):t;if(e.isPlainObject(l[s])&&o!=c)l=l[s];else{if(l[s]!==n)return r=l[s],!1;if(!e.isPlainObject(l[i])||o==c)return l[i]!==n?(r=l[i],!1):(b.error(f.method,t),!1);l=l[i]}})),e.isFunction(r)?a=r.apply(i,o):r!==n&&(a=r),e.isArray(s)?s.push(a):s!==n?s=[s,a]:a!==n&&(s=a),r}},d?(x===n&&b.initialize(),b.invoke(u)):(x!==n&&x.invoke("destroy"),b.initialize())}),s!==n?s:this},e.fn.visibility.settings={name:"Visibility",namespace:"visibility",debug:!1,verbose:!1,performance:!0,observeChanges:!0,once:!0,continuous:!1,offset:0,includeMargin:!1,context:t,initialCheck:!0,throttle:!1,type:!1,transition:!1,duration:1e3,onPassed:{},onPassing:!1,onTopVisible:!1,onBottomVisible:!1,onTopPassed:!1,onBottomPassed:!1,onPassingReverse:!1,onTopVisibleReverse:!1,onBottomVisibleReverse:!1,onTopPassedReverse:!1,onBottomPassedReverse:!1,onUpdate:!1,onRefresh:function(){},className:{fixed:"fixed"},error:{method:"The method you called is not defined."}}}(jQuery,window,document);
+/*!
+ * # Semantic UI 1.11.6 - Visibility
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2014 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+;(function ( $, window, document, undefined ) {
+
+"use strict";
+
+$.fn.visibility = function(parameters) {
+  var
+    $allModules    = $(this),
+    moduleSelector = $allModules.selector || '',
+
+    time           = new Date().getTime(),
+    performance    = [],
+
+    query          = arguments[0],
+    methodInvoked  = (typeof query == 'string'),
+    queryArguments = [].slice.call(arguments, 1),
+    returnedValue
+  ;
+
+  $allModules
+    .each(function() {
+      var
+        settings        = ( $.isPlainObject(parameters) )
+          ? $.extend(true, {}, $.fn.visibility.settings, parameters)
+          : $.extend({}, $.fn.visibility.settings),
+
+        className       = settings.className,
+        namespace       = settings.namespace,
+        error           = settings.error,
+
+        eventNamespace  = '.' + namespace,
+        moduleNamespace = 'module-' + namespace,
+
+        $window         = $(window),
+        $module         = $(this),
+        $context        = $(settings.context),
+        $images         = $module.find('img'),
+
+        selector        = $module.selector || '',
+        instance        = $module.data(moduleNamespace),
+
+        requestAnimationFrame = window.requestAnimationFrame
+          || window.mozRequestAnimationFrame
+          || window.webkitRequestAnimationFrame
+          || window.msRequestAnimationFrame
+          || function(callback) { setTimeout(callback, 0); },
+
+        element         = this,
+        observer,
+        module
+      ;
+
+      module = {
+
+        initialize: function() {
+          module.debug('Initializing', settings);
+
+          module.setup.cache();
+          module.save.position();
+
+          if( module.should.trackChanges() ) {
+            module.bind.events();
+            if(settings.type == 'image') {
+              module.setup.image();
+            }
+            if(settings.type == 'fixed') {
+              module.setup.fixed();
+            }
+          }
+          if(settings.initialCheck) {
+            module.checkVisibility();
+          }
+          if(settings.observeChanges) {
+            module.observeChanges();
+          }
+          module.instantiate();
+        },
+
+        instantiate: function() {
+          module.debug('Storing instance', module);
+          $module
+            .data(moduleNamespace, module)
+          ;
+          instance = module;
+        },
+
+        destroy: function() {
+          module.verbose('Destroying previous module');
+          $module
+            .off(eventNamespace)
+            .removeData(moduleNamespace)
+          ;
+          $window.off('resize' + eventNamespace, module.event.refresh);
+          $context.off('scroll' + eventNamespace, module.event.scroll);
+        },
+
+        observeChanges: function() {
+          var
+            context = $context[0]
+          ;
+          if('MutationObserver' in window) {
+            observer = new MutationObserver(function(mutations) {
+              module.verbose('DOM tree modified, updating visibility calculations');
+              module.refresh();
+            });
+            observer.observe(element, {
+              childList : true,
+              subtree   : true
+            });
+            module.debug('Setting up mutation observer', observer);
+          }
+        },
+
+        bind: {
+          events: function() {
+            module.verbose('Binding visibility events to scroll and resize');
+            $window
+              .on('resize' + eventNamespace, module.event.refresh)
+            ;
+            $context
+              .on('scroll' + eventNamespace, module.event.scroll)
+            ;
+            if($images.length > 0) {
+              module.bind.imageLoad();
+            }
+          },
+          imageLoad: function() {
+            var
+              imageCount    = $images.length,
+              index         = imageCount,
+              loadedCount   = 0,
+              images        = [],
+              cache         = [],
+              cacheImage    = document.createElement('img'),
+              handleLoad    = function() {
+                loadedCount++;
+                if(loadedCount >= imageCount) {
+                  module.debug('Images finished loading inside element, refreshing position');
+                  module.refresh();
+                }
+              }
+            ;
+            $images
+              .each(function() {
+                images.push( $(this).attr('src') );
+              })
+            ;
+            while(index--) {
+              cacheImage         = document.createElement('img');
+              cacheImage.onload  = handleLoad;
+              cacheImage.onerror = handleLoad;
+              cacheImage.src     = images[index];
+              cache.push(cacheImage);
+            }
+          }
+        },
+
+        event: {
+          refresh: function() {
+            requestAnimationFrame(module.refresh);
+          },
+          scroll: function() {
+            module.verbose('Scroll position changed');
+            if(settings.throttle) {
+              clearTimeout(module.timer);
+              module.timer = setTimeout(function() {
+                module.checkVisibility();
+              }, settings.throttle);
+            }
+            else {
+              requestAnimationFrame(function() {
+                module.checkVisibility();
+              });
+            }
+          }
+        },
+
+        should: {
+          trackChanges: function() {
+            if(methodInvoked && queryArguments.length > 0) {
+              module.debug('One time query, no need to bind events');
+              return false;
+            }
+            module.debug('Callbacks being attached');
+            return true;
+          }
+        },
+
+        setup: {
+          cache: function() {
+            module.cache = {
+              occurred : {},
+              screen   : {},
+              element  : {},
+            };
+          },
+          image: function() {
+            var
+              src = $module.data('src')
+            ;
+            if(src) {
+              module.verbose('Lazy loading image', src);
+              settings.observeChanges = false;
+              // show when top visible
+              module.topVisible(function() {
+                module.debug('Image top visible', element);
+                module.precache(src, function() {
+                  module.set.image(src);
+                  settings.onTopVisible = false;
+                });
+              });
+            }
+          },
+          fixed: function() {
+            module.verbose('Setting up fixed on element pass');
+            settings.once = false;
+            settings.onTopPassed = function() {
+              $module
+                .addClass(className.fixed)
+                .css({
+                  top: settings.offset + 'px'
+                })
+              ;
+              if(settings.transition) {
+                if($.fn.transition !== undefined) {
+                  $module.transition(settings.transition, settings.duration);
+                }
+              }
+            };
+            settings.onTopPassedReverse = function() {
+              $module
+                .removeClass(className.fixed)
+                .css({
+                  position: '',
+                  top: ''
+                })
+              ;
+            };
+          }
+        },
+
+        set: {
+          image: function(src) {
+            var
+              offScreen = (module.cache.screen.bottom < module.cache.element.top)
+            ;
+            $module
+              .attr('src', src)
+            ;
+            if(offScreen) {
+              module.verbose('Image outside browser, no show animation');
+              $module.show();
+            }
+            else {
+              if(settings.transition) {
+                if( $.fn.transition !== undefined ) {
+                  $module.transition(settings.transition, settings.duration);
+                }
+                else {
+                  $module.fadeIn(settings.duration);
+                }
+              }
+              else {
+                $module.show();
+              }
+            }
+          }
+        },
+
+        is: {
+          visible: function() {
+            if(module.cache && module.cache.element) {
+              return (module.cache.element.width > 0);
+            }
+            return false;
+          }
+        },
+
+        refresh: function() {
+          module.debug('Refreshing constants (element width/height)');
+          module.reset();
+          module.save.position();
+          module.checkVisibility();
+          settings.onRefresh.call(element);
+        },
+
+        reset: function() {
+          module.verbose('Reseting all cached values');
+          if( $.isPlainObject(module.cache) ) {
+            module.cache.screen = {};
+            module.cache.element = {};
+          }
+        },
+
+        checkVisibility: function() {
+          module.verbose('Checking visibility of element', module.cache.element);
+
+          if( module.is.visible() ) {
+
+            // update calculations derived from scroll
+            module.save.calculations();
+
+            // percentage
+            module.passed();
+
+            // reverse (must be first)
+            module.passingReverse();
+            module.topVisibleReverse();
+            module.bottomVisibleReverse();
+            module.topPassedReverse();
+            module.bottomPassedReverse();
+
+            // one time
+            module.passing();
+            module.topVisible();
+            module.bottomVisible();
+            module.topPassed();
+            module.bottomPassed();
+
+            // on update callback
+            if(settings.onUpdate) {
+              settings.onUpdate.call(element, module.get.elementCalculations());
+            }
+          }
+        },
+
+        passed: function(amount, newCallback) {
+          var
+            calculations   = module.get.elementCalculations(),
+            amountInPixels
+          ;
+          // assign callback
+          if(amount !== undefined && newCallback !== undefined) {
+            settings.onPassed[amount] = newCallback;
+          }
+          else if(amount !== undefined) {
+            return (module.get.pixelsPassed(amount) > calculations.pixelsPassed);
+          }
+          else if(calculations.passing) {
+            $.each(settings.onPassed, function(amount, callback) {
+              if(calculations.bottomVisible || calculations.pixelsPassed > module.get.pixelsPassed(amount)) {
+                module.execute(callback, amount);
+              }
+              else if(!settings.once) {
+                module.remove.occurred(callback);
+              }
+            });
+          }
+        },
+
+        passing: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onPassing,
+            callbackName = 'passing'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for passing', newCallback);
+            settings.onPassing = newCallback;
+          }
+          if(calculations.passing) {
+            module.execute(callback, callbackName);
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback !== undefined) {
+            return calculations.passing;
+          }
+        },
+
+
+        topVisible: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onTopVisible,
+            callbackName = 'topVisible'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for top visible', newCallback);
+            settings.onTopVisible = newCallback;
+          }
+          if(calculations.topVisible) {
+            module.execute(callback, callbackName);
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback === undefined) {
+            return calculations.topVisible;
+          }
+        },
+
+        bottomVisible: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onBottomVisible,
+            callbackName = 'bottomVisible'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for bottom visible', newCallback);
+            settings.onBottomVisible = newCallback;
+          }
+          if(calculations.bottomVisible) {
+            module.execute(callback, callbackName);
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback === undefined) {
+            return calculations.bottomVisible;
+          }
+        },
+
+        topPassed: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onTopPassed,
+            callbackName = 'topPassed'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for top passed', newCallback);
+            settings.onTopPassed = newCallback;
+          }
+          if(calculations.topPassed) {
+            module.execute(callback, callbackName);
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback === undefined) {
+            return calculations.topPassed;
+          }
+        },
+
+        bottomPassed: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onBottomPassed,
+            callbackName = 'bottomPassed'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for bottom passed', newCallback);
+            settings.onBottomPassed = newCallback;
+          }
+          if(calculations.bottomPassed) {
+            module.execute(callback, callbackName);
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback === undefined) {
+            return calculations.bottomPassed;
+          }
+        },
+
+        passingReverse: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onPassingReverse,
+            callbackName = 'passingReverse'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for passing reverse', newCallback);
+            settings.onPassingReverse = newCallback;
+          }
+          if(!calculations.passing) {
+            if(module.get.occurred('passing')) {
+              module.execute(callback, callbackName);
+            }
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback !== undefined) {
+            return !calculations.passing;
+          }
+        },
+
+
+        topVisibleReverse: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onTopVisibleReverse,
+            callbackName = 'topVisibleReverse'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for top visible reverse', newCallback);
+            settings.onTopVisibleReverse = newCallback;
+          }
+          if(!calculations.topVisible) {
+            if(module.get.occurred('topVisible')) {
+              module.execute(callback, callbackName);
+            }
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback === undefined) {
+            return !calculations.topVisible;
+          }
+        },
+
+        bottomVisibleReverse: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onBottomVisibleReverse,
+            callbackName = 'bottomVisibleReverse'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for bottom visible reverse', newCallback);
+            settings.onBottomVisibleReverse = newCallback;
+          }
+          if(!calculations.bottomVisible) {
+            if(module.get.occurred('bottomVisible')) {
+              module.execute(callback, callbackName);
+            }
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback === undefined) {
+            return !calculations.bottomVisible;
+          }
+        },
+
+        topPassedReverse: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onTopPassedReverse,
+            callbackName = 'topPassedReverse'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for top passed reverse', newCallback);
+            settings.onTopPassedReverse = newCallback;
+          }
+          if(!calculations.topPassed) {
+            if(module.get.occurred('topPassed')) {
+              module.execute(callback, callbackName);
+            }
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback === undefined) {
+            return !calculations.onTopPassed;
+          }
+        },
+
+        bottomPassedReverse: function(newCallback) {
+          var
+            calculations = module.get.elementCalculations(),
+            callback     = newCallback || settings.onBottomPassedReverse,
+            callbackName = 'bottomPassedReverse'
+          ;
+          if(newCallback) {
+            module.debug('Adding callback for bottom passed reverse', newCallback);
+            settings.onBottomPassedReverse = newCallback;
+          }
+          if(!calculations.bottomPassed) {
+            if(module.get.occurred('bottomPassed')) {
+              module.execute(callback, callbackName);
+            }
+          }
+          else if(!settings.once) {
+            module.remove.occurred(callbackName);
+          }
+          if(newCallback === undefined) {
+            return !calculations.bottomPassed;
+          }
+        },
+
+        execute: function(callback, callbackName) {
+          var
+            calculations = module.get.elementCalculations(),
+            screen       = module.get.screenCalculations()
+          ;
+          callback = callback || false;
+          if(callback) {
+            if(settings.continuous) {
+              module.debug('Callback being called continuously', callbackName, calculations);
+              callback.call(element, calculations, screen);
+            }
+            else if(!module.get.occurred(callbackName)) {
+              module.debug('Conditions met', callbackName, calculations);
+              callback.call(element, calculations, screen);
+            }
+          }
+          module.save.occurred(callbackName);
+        },
+
+        remove: {
+          occurred: function(callback) {
+            if(callback) {
+              if(module.cache.occurred[callback] !== undefined && module.cache.occurred[callback] === true) {
+                module.debug('Callback can now be called again', callback);
+                module.cache.occurred[callback] = false;
+              }
+            }
+            else {
+              module.cache.occurred = {};
+            }
+          }
+        },
+
+        save: {
+          calculations: function() {
+            module.verbose('Saving all calculations necessary to determine positioning');
+            module.save.scroll();
+            module.save.direction();
+            module.save.screenCalculations();
+            module.save.elementCalculations();
+          },
+          occurred: function(callback) {
+            if(callback) {
+              if(module.cache.occurred[callback] === undefined || (module.cache.occurred[callback] !== true)) {
+                module.verbose('Saving callback occurred', callback);
+                module.cache.occurred[callback] = true;
+              }
+            }
+          },
+          scroll: function() {
+            module.cache.scroll = $context.scrollTop() + settings.offset;
+          },
+          direction: function() {
+            var
+              scroll     = module.get.scroll(),
+              lastScroll = module.get.lastScroll(),
+              direction
+            ;
+            if(scroll > lastScroll && lastScroll) {
+              direction = 'down';
+            }
+            else if(scroll < lastScroll && lastScroll) {
+              direction = 'up';
+            }
+            else {
+              direction = 'static';
+            }
+            module.cache.direction = direction;
+            return module.cache.direction;
+          },
+          elementPosition: function() {
+            var
+              element = module.cache.element,
+              screen  = module.get.screenSize()
+            ;
+            module.verbose('Saving element position');
+            // (quicker than $.extend)
+            element.fits          = (element.height < screen.height);
+            element.offset        = $module.offset();
+            element.width         = $module.outerWidth();
+            element.height        = $module.outerHeight();
+            // store
+            module.cache.element = element;
+            return element;
+          },
+          elementCalculations: function() {
+            var
+              screen     = module.get.screenCalculations(),
+              element    = module.get.elementPosition()
+            ;
+            // offset
+            if(settings.includeMargin) {
+              element.margin        = {};
+              element.margin.top    = parseInt($module.css('margin-top'), 10);
+              element.margin.bottom = parseInt($module.css('margin-bottom'), 10);
+              element.top    = element.offset.top - element.margin.top;
+              element.bottom = element.offset.top + element.height + element.margin.bottom;
+            }
+            else {
+              element.top    = element.offset.top;
+              element.bottom = element.offset.top + element.height;
+            }
+
+            // visibility
+            element.topVisible       = (screen.bottom >= element.top);
+            element.topPassed        = (screen.top >= element.top);
+            element.bottomVisible    = (screen.bottom >= element.bottom);
+            element.bottomPassed     = (screen.top >= element.bottom);
+            element.pixelsPassed     = 0;
+            element.percentagePassed = 0;
+
+            // meta calculations
+            element.visible = (element.topVisible || element.bottomVisible);
+            element.passing = (element.topPassed && !element.bottomPassed);
+            element.hidden  = (!element.topVisible && !element.bottomVisible);
+
+            // passing calculations
+            if(element.passing) {
+              element.pixelsPassed     = (screen.top - element.top);
+              element.percentagePassed = (screen.top - element.top) / element.height;
+            }
+            module.cache.element = element;
+            module.verbose('Updated element calculations', element);
+            return element;
+          },
+          screenCalculations: function() {
+            var
+              scroll = module.get.scroll()
+            ;
+            module.save.direction();
+            module.cache.screen.top    = scroll;
+            module.cache.screen.bottom = scroll + module.cache.screen.height;
+            return module.cache.screen;
+          },
+          screenSize: function() {
+            module.verbose('Saving window position');
+            module.cache.screen = {
+              height: $context.height()
+            };
+          },
+          position: function() {
+            module.save.screenSize();
+            module.save.elementPosition();
+          }
+        },
+
+        get: {
+          pixelsPassed: function(amount) {
+            var
+              element = module.get.elementCalculations()
+            ;
+            if(amount.search('%') > -1) {
+              return ( element.height * (parseInt(amount, 10) / 100) );
+            }
+            return parseInt(amount, 10);
+          },
+          occurred: function(callback) {
+            return (module.cache.occurred !== undefined)
+              ? module.cache.occurred[callback] || false
+              : false
+            ;
+          },
+          direction: function() {
+            if(module.cache.direction === undefined) {
+              module.save.direction();
+            }
+            return module.cache.direction;
+          },
+          elementPosition: function() {
+            if(module.cache.element === undefined) {
+              module.save.elementPosition();
+            }
+            return module.cache.element;
+          },
+          elementCalculations: function() {
+            if(module.cache.element === undefined) {
+              module.save.elementCalculations();
+            }
+            return module.cache.element;
+          },
+          screenCalculations: function() {
+            if(module.cache.screen === undefined) {
+              module.save.screenCalculations();
+            }
+            return module.cache.screen;
+          },
+          screenSize: function() {
+            if(module.cache.screen === undefined) {
+              module.save.screenSize();
+            }
+            return module.cache.screen;
+          },
+          scroll: function() {
+            if(module.cache.scroll === undefined) {
+              module.save.scroll();
+            }
+            return module.cache.scroll;
+          },
+          lastScroll: function() {
+            if(module.cache.screen === undefined) {
+              module.debug('First scroll event, no last scroll could be found');
+              return false;
+            }
+            return module.cache.screen.top;
+          }
+        },
+
+        setting: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, settings, name);
+          }
+          else if(value !== undefined) {
+            settings[name] = value;
+          }
+          else {
+            return settings[name];
+          }
+        },
+        internal: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, module, name);
+          }
+          else if(value !== undefined) {
+            module[name] = value;
+          }
+          else {
+            return module[name];
+          }
+        },
+        debug: function() {
+          if(settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.debug.apply(console, arguments);
+            }
+          }
+        },
+        verbose: function() {
+          if(settings.verbose && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.verbose.apply(console, arguments);
+            }
+          }
+        },
+        error: function() {
+          module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+          module.error.apply(console, arguments);
+        },
+        performance: {
+          log: function(message) {
+            var
+              currentTime,
+              executionTime,
+              previousTime
+            ;
+            if(settings.performance) {
+              currentTime   = new Date().getTime();
+              previousTime  = time || currentTime;
+              executionTime = currentTime - previousTime;
+              time          = currentTime;
+              performance.push({
+                'Name'           : message[0],
+                'Arguments'      : [].slice.call(message, 1) || '',
+                'Element'        : element,
+                'Execution Time' : executionTime
+              });
+            }
+            clearTimeout(module.performance.timer);
+            module.performance.timer = setTimeout(module.performance.display, 100);
+          },
+          display: function() {
+            var
+              title = settings.name + ':',
+              totalTime = 0
+            ;
+            time = false;
+            clearTimeout(module.performance.timer);
+            $.each(performance, function(index, data) {
+              totalTime += data['Execution Time'];
+            });
+            title += ' ' + totalTime + 'ms';
+            if(moduleSelector) {
+              title += ' \'' + moduleSelector + '\'';
+            }
+            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
+              console.groupCollapsed(title);
+              if(console.table) {
+                console.table(performance);
+              }
+              else {
+                $.each(performance, function(index, data) {
+                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
+                });
+              }
+              console.groupEnd();
+            }
+            performance = [];
+          }
+        },
+        invoke: function(query, passedArguments, context) {
+          var
+            object = instance,
+            maxDepth,
+            found,
+            response
+          ;
+          passedArguments = passedArguments || queryArguments;
+          context         = element         || context;
+          if(typeof query == 'string' && object !== undefined) {
+            query    = query.split(/[\. ]/);
+            maxDepth = query.length - 1;
+            $.each(query, function(depth, value) {
+              var camelCaseValue = (depth != maxDepth)
+                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
+                : query
+              ;
+              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
+                object = object[camelCaseValue];
+              }
+              else if( object[camelCaseValue] !== undefined ) {
+                found = object[camelCaseValue];
+                return false;
+              }
+              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
+                object = object[value];
+              }
+              else if( object[value] !== undefined ) {
+                found = object[value];
+                return false;
+              }
+              else {
+                module.error(error.method, query);
+                return false;
+              }
+            });
+          }
+          if ( $.isFunction( found ) ) {
+            response = found.apply(context, passedArguments);
+          }
+          else if(found !== undefined) {
+            response = found;
+          }
+          if($.isArray(returnedValue)) {
+            returnedValue.push(response);
+          }
+          else if(returnedValue !== undefined) {
+            returnedValue = [returnedValue, response];
+          }
+          else if(response !== undefined) {
+            returnedValue = response;
+          }
+          return found;
+        }
+      };
+
+      if(methodInvoked) {
+        if(instance === undefined) {
+          module.initialize();
+        }
+        module.invoke(query);
+      }
+      else {
+        if(instance !== undefined) {
+          instance.invoke('destroy');
+        }
+        module.initialize();
+      }
+    })
+  ;
+
+  return (returnedValue !== undefined)
+    ? returnedValue
+    : this
+  ;
+};
+
+$.fn.visibility.settings = {
+
+  name                   : 'Visibility',
+  namespace              : 'visibility',
+
+  debug                  : false,
+  verbose                : false,
+  performance            : true,
+
+  // whether to use mutation observers to follow changes
+  observeChanges         : true,
+
+  // callback should only occur one time
+  once                   : true,
+
+  // callback should fire continuously whe evaluates to true
+  continuous             : false,
+
+  // offset to use with scroll top
+  offset                 : 0,
+
+  // whether to include margin in elements position
+  includeMargin          : false,
+
+  // scroll context for visibility checks
+  context                : window,
+
+  // check position immediately on init
+  initialCheck           : true,
+
+  // visibility check delay in ms (defaults to animationFrame)
+  throttle               : false,
+
+  // special visibility type (image, fixed)
+  type                   : false,
+
+  // image only animation settings
+  transition             : false,
+  duration               : 1000,
+
+  // array of callbacks for percentage
+  onPassed               : {},
+
+  // standard callbacks
+  onPassing              : false,
+  onTopVisible           : false,
+  onBottomVisible        : false,
+  onTopPassed            : false,
+  onBottomPassed         : false,
+
+  // reverse callbacks
+  onPassingReverse       : false,
+  onTopVisibleReverse    : false,
+  onBottomVisibleReverse : false,
+  onTopPassedReverse     : false,
+  onBottomPassedReverse  : false,
+
+  // utility callbacks
+  onUpdate               : false, // disabled by default for performance
+  onRefresh              : function(){},
+
+  className: {
+    fixed: 'fixed'
+  },
+
+  error : {
+    method : 'The method you called is not defined.'
+  }
+
+};
+
+})( jQuery, window , document );

@@ -1,0 +1,1 @@
+define("lib/av_ext",function(){var n;n=AV.Cloud.run,AV.Cloud.run=function(r,u,e){return e.fail&&(e.error=function(n){return e.fail(n.message)}),n(r,u,e)}});

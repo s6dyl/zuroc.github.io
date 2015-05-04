@@ -1,1 +1,509 @@
-!function(e,n,t,c){"use strict";e.fn.checkbox=function(t){var o,i=e(this),r=i.selector||"",a=(new Date).getTime(),l=[],s=arguments[0],u="string"==typeof s,d=[].slice.call(arguments,1);return i.each(function(){var i,b,g=e.extend(!0,{},e.fn.checkbox.settings,t),h=g.className,f=g.namespace,p=g.selector,k=g.error,m="."+f,v="module-"+f,y=e(this),x=e(this).find(p.label).first(),C=e(this).find(p.input),D=y.data(v),O=this;b={initialize:function(){b.verbose("Initializing checkbox",g),b.create.label(),b.add.events(),b.is.checked()?(b.set.checked(),g.fireOnInit&&g.onChecked.call(C.get())):(b.remove.checked(),g.fireOnInit&&g.onUnchecked.call(C.get())),b.observeChanges(),b.instantiate()},instantiate:function(){b.verbose("Storing instance of module",b),D=b,y.data(v,b)},destroy:function(){b.verbose("Destroying module"),b.remove.events(),y.removeData(v)},refresh:function(){y=e(this),x=e(this).find(p.label).first(),C=e(this).find(p.input)},observeChanges:function(){"MutationObserver"in n&&(i=new MutationObserver(function(){b.debug("DOM tree modified, updating selector cache"),b.refresh()}),i.observe(O,{childList:!0,subtree:!0}),b.debug("Setting up mutation observer",i))},attachEvents:function(n,t){var c=e(n);t=e.isFunction(b[t])?b[t]:b.toggle,c.length>0?(b.debug("Attaching checkbox events to element",n,t),c.on("click"+m,t)):b.error(k.notFound)},event:{keydown:function(e){var n=e.which,t={enter:13,space:32,escape:27};n==t.escape&&(b.verbose("Escape key pressed blurring field"),y.blur()),e.ctrlKey||n!=t.enter&&n!=t.space||(b.verbose("Enter key pressed, toggling checkbox"),b.toggle.call(this),e.preventDefault())}},is:{radio:function(){return y.hasClass(h.radio)},checked:function(){return C.prop("checked")!==c&&C.prop("checked")},unchecked:function(){return!b.is.checked()}},can:{change:function(){return!(y.hasClass(h.disabled)||y.hasClass(h.readOnly)||C.prop("disabled"))},uncheck:function(){return"boolean"==typeof g.uncheckable?g.uncheckable:!b.is.radio()}},set:{checked:function(){y.addClass(h.checked)},tab:function(){C.attr("tabindex")===c&&C.attr("tabindex",0)}},create:{label:function(){C.prevAll(p.label).length>0?(C.prev(p.label).detach().insertAfter(C),b.debug("Moving existing label",x)):b.has.label()||(x=e("<label>").insertAfter(C),b.debug("Creating label",x))}},has:{label:function(){return x.length>0}},add:{events:function(){b.verbose("Attaching checkbox events"),y.on("click"+m,b.toggle).on("keydown"+m,p.input,b.event.keydown)}},remove:{checked:function(){y.removeClass(h.checked)},events:function(){b.debug("Removing events"),y.off(m).removeData(v),C.off(m,b.event.keydown),x.off(m)}},enable:function(){b.debug("Enabling checkbox functionality"),y.removeClass(h.disabled),C.prop("disabled",!1),g.onEnabled.call(C.get())},disable:function(){b.debug("Disabling checkbox functionality"),y.addClass(h.disabled),C.prop("disabled","disabled"),g.onDisabled.call(C.get())},check:function(){b.debug("Enabling checkbox",C),C.prop("checked",!0).trigger("change"),b.set.checked(),C.trigger("blur"),g.onChange.call(C.get()),g.onChecked.call(C.get())},uncheck:function(){b.debug("Disabling checkbox"),C.prop("checked",!1).trigger("change"),b.remove.checked(),C.trigger("blur"),g.onChange.call(C.get()),g.onUnchecked.call(C.get())},toggle:function(){return b.can.change()?(b.verbose("Determining new checkbox state"),void(b.is.unchecked()?b.check():b.is.checked()&&b.can.uncheck()&&b.uncheck())):(console.log(b.can.change()),void b.debug("Checkbox is read-only or disabled, ignoring toggle"))},setting:function(n,t){if(b.debug("Changing setting",n,t),e.isPlainObject(n))e.extend(!0,g,n);else{if(t===c)return g[n];g[n]=t}},internal:function(n,t){if(e.isPlainObject(n))e.extend(!0,b,n);else{if(t===c)return b[n];b[n]=t}},debug:function(){g.debug&&(g.performance?b.performance.log(arguments):(b.debug=Function.prototype.bind.call(console.info,console,g.name+":"),b.debug.apply(console,arguments)))},verbose:function(){g.verbose&&g.debug&&(g.performance?b.performance.log(arguments):(b.verbose=Function.prototype.bind.call(console.info,console,g.name+":"),b.verbose.apply(console,arguments)))},error:function(){b.error=Function.prototype.bind.call(console.error,console,g.name+":"),b.error.apply(console,arguments)},performance:{log:function(e){var n,t,c;g.performance&&(n=(new Date).getTime(),c=a||n,t=n-c,a=n,l.push({Name:e[0],Arguments:[].slice.call(e,1)||"",Element:O,"Execution Time":t})),clearTimeout(b.performance.timer),b.performance.timer=setTimeout(b.performance.display,100)},display:function(){var n=g.name+":",t=0;a=!1,clearTimeout(b.performance.timer),e.each(l,function(e,n){t+=n["Execution Time"]}),n+=" "+t+"ms",r&&(n+=" '"+r+"'"),(console.group!==c||console.table!==c)&&l.length>0&&(console.table||e.each(l,function(){}),console.groupEnd()),l=[]}},invoke:function(n,t,i){var r,a,l,s=D;return t=t||d,i=O||i,"string"==typeof n&&s!==c&&(n=n.split(/[\. ]/),r=n.length-1,e.each(n,function(t,o){var i=t!=r?o+n[t+1].charAt(0).toUpperCase()+n[t+1].slice(1):n;if(e.isPlainObject(s[i])&&t!=r)s=s[i];else{if(s[i]!==c)return a=s[i],!1;if(!e.isPlainObject(s[o])||t==r)return s[o]!==c?(a=s[o],!1):(b.error(k.method,n),!1);s=s[o]}})),e.isFunction(a)?l=a.apply(i,t):a!==c&&(l=a),e.isArray(o)?o.push(l):o!==c?o=[o,l]:l!==c&&(o=l),a}},u?(D===c&&b.initialize(),b.invoke(s)):(D!==c&&D.invoke("destroy"),b.initialize())}),o!==c?o:this},e.fn.checkbox.settings={name:"Checkbox",namespace:"checkbox",debug:!1,verbose:!0,performance:!0,uncheckable:"auto",fireOnInit:!0,onChange:function(){},onChecked:function(){},onUnchecked:function(){},onEnabled:function(){},onDisabled:function(){},className:{checked:"checked",disabled:"disabled",radio:"radio",readOnly:"read-only"},error:{method:"The method you called is not defined"},selector:{input:'input[type="checkbox"], input[type="radio"]',label:"label"}}}(jQuery,window,document);
+/*!
+ * # Semantic UI 1.11.6 - Checkbox
+ * http://github.com/semantic-org/semantic-ui/
+ *
+ *
+ * Copyright 2014 Contributors
+ * Released under the MIT license
+ * http://opensource.org/licenses/MIT
+ *
+ */
+
+;(function ( $, window, document, undefined ) {
+
+"use strict";
+
+$.fn.checkbox = function(parameters) {
+  var
+    $allModules    = $(this),
+    moduleSelector = $allModules.selector || '',
+
+    time           = new Date().getTime(),
+    performance    = [],
+
+    query          = arguments[0],
+    methodInvoked  = (typeof query == 'string'),
+    queryArguments = [].slice.call(arguments, 1),
+    returnedValue
+  ;
+
+  $allModules
+    .each(function() {
+      var
+        settings        = $.extend(true, {}, $.fn.checkbox.settings, parameters),
+
+        className       = settings.className,
+        namespace       = settings.namespace,
+        selector        = settings.selector,
+        error           = settings.error,
+
+        eventNamespace  = '.' + namespace,
+        moduleNamespace = 'module-' + namespace,
+
+        $module         = $(this),
+        $label          = $(this).find(selector.label).first(),
+        $input          = $(this).find(selector.input),
+
+        instance        = $module.data(moduleNamespace),
+
+        observer,
+        element         = this,
+        module
+      ;
+
+      module      = {
+
+        initialize: function() {
+          module.verbose('Initializing checkbox', settings);
+
+          module.create.label();
+          module.add.events();
+
+          if( module.is.checked() ) {
+            module.set.checked();
+            if(settings.fireOnInit) {
+              settings.onChecked.call($input.get());
+            }
+          }
+          else {
+            module.remove.checked();
+            if(settings.fireOnInit) {
+              settings.onUnchecked.call($input.get());
+            }
+          }
+          module.observeChanges();
+
+          module.instantiate();
+        },
+
+        instantiate: function() {
+          module.verbose('Storing instance of module', module);
+          instance = module;
+          $module
+            .data(moduleNamespace, module)
+          ;
+        },
+
+        destroy: function() {
+          module.verbose('Destroying module');
+          module.remove.events();
+          $module
+            .removeData(moduleNamespace)
+          ;
+        },
+
+        refresh: function() {
+          $module = $(this);
+          $label  = $(this).find(selector.label).first();
+          $input  = $(this).find(selector.input);
+        },
+
+        observeChanges: function() {
+          if('MutationObserver' in window) {
+            observer = new MutationObserver(function(mutations) {
+              module.debug('DOM tree modified, updating selector cache');
+              module.refresh();
+            });
+            observer.observe(element, {
+              childList : true,
+              subtree   : true
+            });
+            module.debug('Setting up mutation observer', observer);
+          }
+        },
+
+        attachEvents: function(selector, event) {
+          var
+            $element = $(selector)
+          ;
+          event = $.isFunction(module[event])
+            ? module[event]
+            : module.toggle
+          ;
+          if($element.length > 0) {
+            module.debug('Attaching checkbox events to element', selector, event);
+            $element
+              .on('click' + eventNamespace, event)
+            ;
+          }
+          else {
+            module.error(error.notFound);
+          }
+        },
+
+        event: {
+          keydown: function(event) {
+            var
+              key     = event.which,
+              keyCode = {
+                enter  : 13,
+                space  : 32,
+                escape : 27
+              }
+            ;
+            if( key == keyCode.escape) {
+              module.verbose('Escape key pressed blurring field');
+              $module
+                .blur()
+              ;
+            }
+            if(!event.ctrlKey && (key == keyCode.enter || key == keyCode.space)) {
+              module.verbose('Enter key pressed, toggling checkbox');
+              module.toggle.call(this);
+              event.preventDefault();
+            }
+          }
+        },
+
+        is: {
+          radio: function() {
+            return $module.hasClass(className.radio);
+          },
+          checked: function() {
+            return $input.prop('checked') !== undefined && $input.prop('checked');
+          },
+          unchecked: function() {
+            return !module.is.checked();
+          }
+        },
+
+        can: {
+          change: function() {
+            return !( $module.hasClass(className.disabled) || $module.hasClass(className.readOnly) || $input.prop('disabled') );
+          },
+          uncheck: function() {
+            return (typeof settings.uncheckable === 'boolean')
+              ? settings.uncheckable
+              : !module.is.radio()
+            ;
+          }
+        },
+
+        set: {
+          checked: function() {
+            $module.addClass(className.checked);
+          },
+          tab: function() {
+            if( $input.attr('tabindex') === undefined) {
+              $input
+                .attr('tabindex', 0)
+              ;
+            }
+          }
+        },
+
+        create: {
+          label: function() {
+            if($input.prevAll(selector.label).length > 0) {
+              $input.prev(selector.label).detach().insertAfter($input);
+              module.debug('Moving existing label', $label);
+            }
+            else if( !module.has.label() ) {
+              $label = $('<label>').insertAfter($input);
+              module.debug('Creating label', $label);
+            }
+          }
+        },
+
+        has: {
+          label: function() {
+            return ($label.length > 0);
+          }
+        },
+
+        add: {
+          events: function() {
+            module.verbose('Attaching checkbox events');
+            $module
+              .on('click'   + eventNamespace, module.toggle)
+              .on('keydown' + eventNamespace, selector.input, module.event.keydown)
+            ;
+          }
+        },
+
+        remove: {
+          checked: function() {
+            $module.removeClass(className.checked);
+          },
+          events: function() {
+            module.debug('Removing events');
+            $module
+              .off(eventNamespace)
+              .removeData(moduleNamespace)
+            ;
+            $input
+              .off(eventNamespace, module.event.keydown)
+            ;
+            $label
+              .off(eventNamespace)
+            ;
+          }
+        },
+
+        enable: function() {
+          module.debug('Enabling checkbox functionality');
+          $module.removeClass(className.disabled);
+          $input.prop('disabled', false);
+          settings.onEnabled.call($input.get());
+        },
+
+        disable: function() {
+          module.debug('Disabling checkbox functionality');
+          $module.addClass(className.disabled);
+          $input.prop('disabled', 'disabled');
+          settings.onDisabled.call($input.get());
+        },
+
+        check: function() {
+          module.debug('Enabling checkbox', $input);
+          $input
+            .prop('checked', true)
+            .trigger('change')
+          ;
+          module.set.checked();
+          $input.trigger('blur');
+          settings.onChange.call($input.get());
+          settings.onChecked.call($input.get());
+        },
+
+        uncheck: function() {
+          module.debug('Disabling checkbox');
+          $input
+            .prop('checked', false)
+            .trigger('change')
+          ;
+          module.remove.checked();
+          $input.trigger('blur');
+          settings.onChange.call($input.get());
+          settings.onUnchecked.call($input.get());
+        },
+
+        toggle: function(event) {
+          if( !module.can.change() ) {
+            console.log(module.can.change());
+            module.debug('Checkbox is read-only or disabled, ignoring toggle');
+            return;
+          }
+          module.verbose('Determining new checkbox state');
+          if( module.is.unchecked() ) {
+            module.check();
+          }
+          else if( module.is.checked() && module.can.uncheck() ) {
+            module.uncheck();
+          }
+        },
+        setting: function(name, value) {
+          module.debug('Changing setting', name, value);
+          if( $.isPlainObject(name) ) {
+            $.extend(true, settings, name);
+          }
+          else if(value !== undefined) {
+            settings[name] = value;
+          }
+          else {
+            return settings[name];
+          }
+        },
+        internal: function(name, value) {
+          if( $.isPlainObject(name) ) {
+            $.extend(true, module, name);
+          }
+          else if(value !== undefined) {
+            module[name] = value;
+          }
+          else {
+            return module[name];
+          }
+        },
+        debug: function() {
+          if(settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.debug = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.debug.apply(console, arguments);
+            }
+          }
+        },
+        verbose: function() {
+          if(settings.verbose && settings.debug) {
+            if(settings.performance) {
+              module.performance.log(arguments);
+            }
+            else {
+              module.verbose = Function.prototype.bind.call(console.info, console, settings.name + ':');
+              module.verbose.apply(console, arguments);
+            }
+          }
+        },
+        error: function() {
+          module.error = Function.prototype.bind.call(console.error, console, settings.name + ':');
+          module.error.apply(console, arguments);
+        },
+        performance: {
+          log: function(message) {
+            var
+              currentTime,
+              executionTime,
+              previousTime
+            ;
+            if(settings.performance) {
+              currentTime   = new Date().getTime();
+              previousTime  = time || currentTime;
+              executionTime = currentTime - previousTime;
+              time          = currentTime;
+              performance.push({
+                'Name'           : message[0],
+                'Arguments'      : [].slice.call(message, 1) || '',
+                'Element'        : element,
+                'Execution Time' : executionTime
+              });
+            }
+            clearTimeout(module.performance.timer);
+            module.performance.timer = setTimeout(module.performance.display, 100);
+          },
+          display: function() {
+            var
+              title = settings.name + ':',
+              totalTime = 0
+            ;
+            time = false;
+            clearTimeout(module.performance.timer);
+            $.each(performance, function(index, data) {
+              totalTime += data['Execution Time'];
+            });
+            title += ' ' + totalTime + 'ms';
+            if(moduleSelector) {
+              title += ' \'' + moduleSelector + '\'';
+            }
+            if( (console.group !== undefined || console.table !== undefined) && performance.length > 0) {
+              console.groupCollapsed(title);
+              if(console.table) {
+                console.table(performance);
+              }
+              else {
+                $.each(performance, function(index, data) {
+                  console.log(data['Name'] + ': ' + data['Execution Time']+'ms');
+                });
+              }
+              console.groupEnd();
+            }
+            performance = [];
+          }
+        },
+        invoke: function(query, passedArguments, context) {
+          var
+            object = instance,
+            maxDepth,
+            found,
+            response
+          ;
+          passedArguments = passedArguments || queryArguments;
+          context         = element         || context;
+          if(typeof query == 'string' && object !== undefined) {
+            query    = query.split(/[\. ]/);
+            maxDepth = query.length - 1;
+            $.each(query, function(depth, value) {
+              var camelCaseValue = (depth != maxDepth)
+                ? value + query[depth + 1].charAt(0).toUpperCase() + query[depth + 1].slice(1)
+                : query
+              ;
+              if( $.isPlainObject( object[camelCaseValue] ) && (depth != maxDepth) ) {
+                object = object[camelCaseValue];
+              }
+              else if( object[camelCaseValue] !== undefined ) {
+                found = object[camelCaseValue];
+                return false;
+              }
+              else if( $.isPlainObject( object[value] ) && (depth != maxDepth) ) {
+                object = object[value];
+              }
+              else if( object[value] !== undefined ) {
+                found = object[value];
+                return false;
+              }
+              else {
+                module.error(error.method, query);
+                return false;
+              }
+            });
+          }
+          if ( $.isFunction( found ) ) {
+            response = found.apply(context, passedArguments);
+          }
+          else if(found !== undefined) {
+            response = found;
+          }
+          if($.isArray(returnedValue)) {
+            returnedValue.push(response);
+          }
+          else if(returnedValue !== undefined) {
+            returnedValue = [returnedValue, response];
+          }
+          else if(response !== undefined) {
+            returnedValue = response;
+          }
+          return found;
+        }
+      };
+
+      if(methodInvoked) {
+        if(instance === undefined) {
+          module.initialize();
+        }
+        module.invoke(query);
+      }
+      else {
+        if(instance !== undefined) {
+          instance.invoke('destroy');
+        }
+        module.initialize();
+      }
+    })
+  ;
+
+  return (returnedValue !== undefined)
+    ? returnedValue
+    : this
+  ;
+};
+
+$.fn.checkbox.settings = {
+
+  name        : 'Checkbox',
+  namespace   : 'checkbox',
+
+  debug       : false,
+  verbose     : true,
+  performance : true,
+
+  // delegated event context
+  uncheckable : 'auto',
+  fireOnInit  : true,
+
+  onChange    : function(){},
+  onChecked   : function(){},
+  onUnchecked : function(){},
+  onEnabled   : function(){},
+  onDisabled  : function(){},
+
+  className   : {
+    checked  : 'checked',
+    disabled : 'disabled',
+    radio    : 'radio',
+    readOnly : 'read-only'
+  },
+
+  error     : {
+    method   : 'The method you called is not defined'
+  },
+
+  selector : {
+    input  : 'input[type="checkbox"], input[type="radio"]',
+    label  : 'label'
+  }
+
+};
+
+})( jQuery, window , document );
